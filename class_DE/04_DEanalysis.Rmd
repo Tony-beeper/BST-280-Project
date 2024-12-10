@@ -1,0 +1,165 @@
+---
+title: "Differential expression analysis"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float: true
+---
+
+We will use the limma package to perform a differential expression analysis between cell lines and their tissue of origin (LCL and whole blood). RNA-Seq data was obtained from the GTEx project.
+
+## Install and load packages
+```{r message=FALSE}
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install("Biobase")
+# BiocManager::install("limma")
+# install.packages("ggfortify")
+# BiocManager::install("biomaRt")
+# install.packages("gplots")
+
+library(Biobase)
+library(limma)
+library(ggfortify)
+library(biomaRt)
+library(gplots)
+```
+
+## Load the data
+```{r}
+load("gtex_cellLine_blood.rdata")
+ls()
+print(obj)
+```
+
+## Exploratory data analysis
+Many common statistical methods for exploratory analysis, for example clustering and principal components analysis (PCA), work best for data that generally has the same range of variance at different ranges of the mean values. However, for RNA-seq counts the expected variance grows with the mean. For example, if one performs PCA directly on a matrix of counts or normalized counts (e.g. correcting for differences in sequencing depth), the resulting plot typically depends mostly on the genes with highest counts because they show the largest absolute differences between samples.  A simple and often used strategy to avoid this is to take the logarithm of the normalized count values plus a pseudocount of 1.   
+```{r}
+# CPM (counts per million) normalization - counts scaled by the total number of reads
+counts <- exprs(obj)
+cpm <- apply(counts,2, function(x) x/sum(x)*10^6)
+logcpm <- log2(cpm+1)
+```
+
+## Principal Component Analysis (PCA) 
+```{r}
+myPCA <- prcomp(t(logcpm))
+autoplot(myPCA, data=pData(obj), colour="group")
+```
+
+## Gene filtering
+Genes with very low counts across all libraries provide little evidence for differential expression, and should be filtered out prior to further analysis.  
+Genes will be filtered if they have very low counts (1cpm) in 25% of the samples.
+```{r}
+keep <- rowSums(cpm > 1) >= ncol(obj)/4
+obj <- obj[keep,]
+print(obj)
+```
+
+## Run the differential expression analysis
+In RNA-seq count data, the variance is not independent of the mean. In limma, linear modelling is carried out on the log-CPM values which are assumed to be normally distributed and the mean-variance relationship is accommodated using precision weights calculated by the voom function. Linear modelling in limma is carried out using the lmFit function, which fits a separate model to the expression values for each gene. Next, empirical Bayes moderation is carried out by borrowing information across all the genes to obtain more precise estimates of gene-wise variability. By plotting the model’s residual variances against average expression values, it can be seen that the variance is no longer dependent on the mean expression level.
+
+```{r}
+# In RNA-Seq, the variance grows with the mean (genes with higher expression have higher variance)
+SD <- apply(exprs(obj),1,sd)
+Mean <- apply(exprs(obj),1,mean)
+plot(x=Mean, y=SD, main="raw counts - variance dependant on mean")
+
+# Construct the design matrix to test expression difference between cell lines and their tissue of origin
+condition <- factor(pData(obj)$group, levels=c("whole_blood", "cell_line"))
+design <- model.matrix(~ condition)
+# design <- model.matrix(~ batch + condition) # you can adjust the model for batch effects
+# Voom transformation reduces the mean-variance dependancy 
+voomOutput <- voom(exprs(obj), design, plot=TRUE)
+fit <- lmFit(voomOutput, design)
+fit <- eBayes(fit)
+plotSA(fit, main="Final model: Mean−variance trend")
+res <- topTable(fit, coef="conditioncell_line", number=Inf)
+head(res)
+# save results in a file
+#write.table(res, file="DE_results.txt", sep="\t", quote=F) 
+```
+
+## Explore the results
+```{r}
+# Find the number of genes differentially expressed under a defined thereshold (FDR<0.05 and absolute log fold-change greater than 2).
+sum(res$adj.P.Val < 0.05 & abs(res$logFC) > 2)
+# Find the number of genes overexpressed in the cell lines
+sum(res$adj.P.Val < 0.05 & res$logFC > 2)
+# Find the number of genes overexpressed in the tissue samples
+sum(res$adj.P.Val < 0.05 & res$logFC < -2)
+
+# Volcano-plot
+# Color genes differentially expressed under a defined thereshold (FDR<0.05 and absolute log fold-change greater than 2).
+sig = ifelse(res$adj.P.Val < 0.05 & abs(res$logFC) > 2, yes="red",no="black")
+plot(x=res$logFC, y=-log(res$adj.P.Val), xlab="log-fold-change",
+     ylab="-log(FDR)",pch=21,col=sig,bty="l", main="Volcano plot", cex=0.8)
+
+# MA plot
+sig = ifelse(res$adj.P.Val < 0.05 & abs(res$logFC) > 2, yes="red",no="black")
+plot(x=res$AveExpr, y=res$logFC, xlab="Average log-expression", ylab="log-fold-change",
+     pch=21,col=sig,bty="l", main="MA plot", cex=0.8)
+
+# Heatmap with top 20 differentially expressed genes
+mat <- logcpm[rownames(res)[1:20],]
+# Create color bar with group information
+cols <- pData(obj)$group
+heatmapColColors <- c("blue", "red")[factor(cols)]
+# Create a vector for the heatmap color
+heatmapCols = colorRampPalette(c("yellow", "red"))(250)
+# Plot the heatmap and legend
+heatmap.2(mat,trace="none",ColSideColors=heatmapColColors,col=heatmapCols,labCol=FALSE,
+          margins=c(1,12), density.info="none", key.xlab="expression", key.title=NA)
+legend(x=7,y=18,legend=unique(cols),fill=unique(heatmapColColors), xpd=TRUE, box.lwd=NA) 
+
+# Replace row names by gene symbol
+symbol <- fData(obj)[rownames(mat),"geneNames"]
+heatmap.2(mat,trace="none",ColSideColors=heatmapColColors,col=heatmapCols,
+          labCol=FALSE,labRow=symbol,
+          margins=c(1,12), density.info="none", key.xlab="expression", key.title=NA)
+legend(x=7,y=18,legend=unique(cols),fill=unique(heatmapColColors), xpd=TRUE, box.lwd=NA) 
+```
+
+## GO and KEGG pathway enrichment analysis
+Let's interpret the differential expression results in terms of higher order biological processes or pathways. We can identify gene sets (gene ontology (GO) terms or KEGG pathways) with significantly more differentially expressed genes than expected by chance.
+
+```{r}
+# First convert ensembl ID to entrez gene using the biomaRt package
+# If bioMart is unresponsive, please laod the annotation file from our server:
+#annot <- read.delim("biomart_annotation.txt",stringsAsFactors = F)
+ensembl <- useMart("ensembl",dataset="hsapiens_gene_ensembl",host = "www.ensembl.org")
+ens_genes <- featureNames(obj)
+# Remove the version of the Ensembl ID (the number after the .)
+ens_genes <- sub("\\..*", "", ens_genes)
+annot <- getBM(attributes=c('ensembl_gene_id', 'entrezgene_id', 'hgnc_symbol'), 
+      filters = 'ensembl_gene_id', 
+      values = ens_genes, 
+      mart = ensembl)
+head(annot)
+
+# Define the set of differentially expressed genes to test. We will define a cutoff of FDR<0.05 and absolute log fold-change greater than 2.
+up_cell <- rownames(res)[which(res$logFC > 2 & res$adj.P.Val < 0.05)]
+up_cell <- sub("\\..*", "", up_cell) # This will remove the version in the ensemble ID
+up_cell_ID <- annot[match(up_cell, annot$ensembl_gene_id), "entrezgene_id"]
+
+up_tissue <- rownames(res)[which(res$logFC < -2 & res$adj.P.Val < 0.05)]
+up_tissue <- sub("\\..*", "", up_tissue)
+up_tissue_ID <- annot[match(up_tissue, annot$ensembl_gene_id), "entrezgene_id"]
+
+# Perform over-representation analyses for Gene Ontology terms using the limma package
+go_cell <- goana(up_cell_ID, species="Hs")
+# This is the list of top GO terms enriched for genes highly expressed in cell lines
+topGO(go_cell, ontology = "BP")
+go_tissue <- goana(up_tissue_ID, species="Hs")
+# This is the list of top GO terms enriched for genes highly expressed in tissues
+topGO(go_tissue, ontology = "BP")
+
+# Perform over-representation analyses for KEGG pathways
+kegg_cell <- kegga(up_cell_ID, species="Hs")
+# This is the list of top KEGG pathwayss enriched for genes highly expressed in cell lines
+topKEGG(kegg_cell)
+kegg_tissue <- kegga(up_tissue_ID, species="Hs")
+# This is the list of top KEGG pathways enriched for genes highly expressed in tissues
+topKEGG(kegg_tissue)
+```

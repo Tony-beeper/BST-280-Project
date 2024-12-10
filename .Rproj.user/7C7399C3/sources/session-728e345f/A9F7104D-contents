@@ -1,0 +1,21 @@
+---
+title: "test"
+output: html_document
+date: "2024-11-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## R Markdown
+```{r}
+tab <- read.delim("data/testfile.txt")
+tab
+```
+
+```{r}
+library(limma)
+?voom
+```

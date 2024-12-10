@@ -1,0 +1,24 @@
+{
+    "id": "2B9D2486",
+    "path": "/cloud/project/README.Rmd",
+    "project_path": "README.Rmd",
+    "type": "r_markdown",
+    "hash": "2541651747",
+    "contents": "",
+    "dirty": false,
+    "created": 1692016163490.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1692017549,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1692017549030,
+    "read_only": false,
+    "read_only_alternatives": []
+}

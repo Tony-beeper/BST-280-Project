@@ -1,0 +1,11 @@
+"0","# Explore the clinival variables available
+grep(""gender"",colnames(clinical),value=T,ignore.case = T)
+"
+"1","[1]"
+"1"," ""tcga.gdc_cases.demographic.gender"""
+"1","
+"
+"1","[2]"
+"1"," ""tcga.cgc_case_gender""             "
+"1","
+"

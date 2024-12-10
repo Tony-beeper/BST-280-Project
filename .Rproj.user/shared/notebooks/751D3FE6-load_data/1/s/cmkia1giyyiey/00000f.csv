@@ -1,0 +1,2 @@
+"0","# To access the rowData, which contains information about the rows (genes), use the rowData function:"
+"0","gene_annot <- rowData(obj)"

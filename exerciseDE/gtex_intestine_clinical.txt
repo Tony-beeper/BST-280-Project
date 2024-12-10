@@ -1,0 +1,105 @@
+gender	AGE	RACE	ETHNCTY	HGHT	HGHTU	WGHT	WGHTU	BMI	SMNABTCH	SMNABTCHT	SMNABTCHD	SMGEBTCH	SMGEBTCHD	SMGEBTCHT	ids	our_subtypes
+GTEX-111CU-1326-SM-5NQ8L	MALE	57	3	0	70	in	234	lb	33.57	BP-43529	RNA Extraction from Paxgene-derived Lysate Plate Based	09/13/2013	LCSET-4906	03/22/2014	TrueSeq.v1	GTEX-111CU	small_intestine_terminal_ileum
+GTEX-111YS-1426-SM-5GID8	MALE	62	3	0	72	in	227	lb	30.78	BP-44261	RNA Extraction from Paxgene-derived Lysate Plate Based	10/03/2013	LCSET-4796	02/27/2014	TrueSeq.v1	GTEX-111YS	small_intestine_terminal_ileum
+GTEX-1122O-1326-SM-5H11F	FEMALE	64	3	0	66	in	203	lb	32.76	BP-43693	RNA Extraction from Paxgene-derived Lysate Plate Based	09/17/2013	LCSET-4805	02/27/2014	TrueSeq.v1	GTEX-1122O	small_intestine_terminal_ileum
+GTEX-117YX-0326-SM-5GICL	MALE	55	1	0	66	in	142	lb	22.92	BP-44261	RNA Extraction from Paxgene-derived Lysate Plate Based	10/03/2013	LCSET-4796	02/27/2014	TrueSeq.v1	GTEX-117YX	small_intestine_terminal_ileum
+GTEX-1192X-2526-SM-59868	MALE	55	3	0	74	in	190.74	lb	24.49	BP-44577	RNA Extraction from Paxgene-derived Lysate Plate Based	10/11/2013	LCSET-4417	01/23/2014	TrueSeq.v1	GTEX-1192X	small_intestine_terminal_ileum
+GTEX-11DXX-1626-SM-5H11H	FEMALE	66	3	0	64.5	in	128	lb	21.63	BP-43507	RNA Extraction from Paxgene-derived Lysate Plate Based	09/12/2013	LCSET-4805	02/27/2014	TrueSeq.v1	GTEX-11DXX	small_intestine_terminal_ileum
+GTEX-11DXZ-1326-SM-5H11X	MALE	56	2	0	66	in	136	lb	21.95	BP-43783	RNA Extraction from Paxgene-derived Lysate Plate Based	09/19/2013	LCSET-4805	02/27/2014	TrueSeq.v1	GTEX-11DXZ	small_intestine_terminal_ileum
+GTEX-11EQ9-1326-SM-5985X	MALE	33	3	0	68	in	166	lb	25.24	BP-44577	RNA Extraction from Paxgene-derived Lysate Plate Based	10/11/2013	LCSET-4417	01/23/2014	TrueSeq.v1	GTEX-11EQ9	small_intestine_terminal_ileum
+GTEX-11I78-1126-SM-5A5K5	FEMALE	51	3	0	64	in	171	lb	29.35	BP-44264	RNA Extraction from Paxgene-derived Lysate Plate Based	10/03/2013	LCSET-4423	01/29/2014	TrueSeq.v1	GTEX-11I78	small_intestine_terminal_ileum
+GTEX-11LCK-1926-SM-5A5KE	MALE	38	3	0	71	in	239	lb	33.33	BP-44264	RNA Extraction from Paxgene-derived Lysate Plate Based	10/03/2013	LCSET-4423	01/29/2014	TrueSeq.v1	GTEX-11LCK	small_intestine_terminal_ileum
+GTEX-11NSD-1726-SM-5N9C3	MALE	27	3	0	68	in	184.6	lb	28.07	BP-43989	RNA Extraction from Paxgene-derived Lysate Plate Based	09/26/2013	LCSET-4904	03/22/2014	TrueSeq.v1	GTEX-11NSD	small_intestine_terminal_ileum
+GTEX-11P7K-1626-SM-5GU63	MALE	37	2	0	73	in	159	lb	20.98	BP-44312	RNA Extraction from Paxgene-derived Lysate Plate Based	10/04/2013	LCSET-5132	03/08/2014	TrueSeq.v1	GTEX-11P7K	small_intestine_terminal_ileum
+GTEX-11P82-0826-SM-5P9GU	MALE	21	3	0	70	in	167	lb	23.96	BP-47888	RNA Extraction from Paxgene-derived Lysate Plate Based	01/06/2014	LCSET-4914	03/27/2014	TrueSeq.v1	GTEX-11P82	small_intestine_terminal_ileum
+GTEX-11TUW-1926-SM-5BC58	MALE	66	3	99	69	in	226	lb	33.37	BP-44512	RNA Extraction from Paxgene-derived Lysate Plate Based	10/10/2013	LCSET-4455	01/18/2014	TrueSeq.v1	GTEX-11TUW	small_intestine_terminal_ileum
+GTEX-11VI4-1626-SM-5EQKO	FEMALE	47	3	0	65	in	194	lb	32.28	BP-44114	RNA Extraction from Paxgene-derived Lysate Plate Based	09/30/2013	LCSET-4790	02/19/2014	TrueSeq.v1	GTEX-11VI4	small_intestine_terminal_ileum
+GTEX-11WQK-2326-SM-5GU4Z	MALE	55	3	0	68	in	156	lb	23.72	BP-43753	RNA Extraction from Paxgene-derived Lysate Plate Based	09/19/2013	LCSET-4803	02/19/2014	TrueSeq.v1	GTEX-11WQK	small_intestine_terminal_ileum
+GTEX-11XUK-1426-SM-5EQMG	FEMALE	48	3	0	64	in	137.5	lb	23.6	BP-44114	RNA Extraction from Paxgene-derived Lysate Plate Based	09/30/2013	LCSET-4790	02/19/2014	TrueSeq.v1	GTEX-11XUK	small_intestine_terminal_ileum
+GTEX-12BJ1-1926-SM-5HL9Z	MALE	61	3	0	69	in	164.9	lb	24.35	BP-45268	RNA Extraction from Paxgene-derived Lysate Plate Based	10/29/2013	LCSET-4807	02/28/2014	TrueSeq.v1	GTEX-12BJ1	small_intestine_terminal_ileum
+GTEX-12WSK-1526-SM-5CVNO	FEMALE	41	3	0	65	in	157	lb	26.12	BP-44437	RNA Extraction from Paxgene-derived Lysate Plate Based	10/08/2013	LCSET-4633	02/15/2014	TrueSeq.v1	GTEX-12WSK	small_intestine_terminal_ileum
+GTEX-13111-1426-SM-5DUW3	MALE	51	3	0	68	in	175.7	lb	26.71	BP-44437	RNA Extraction from Paxgene-derived Lysate Plate Based	10/08/2013	LCSET-4634	02/08/2014	TrueSeq.v1	GTEX-13111	small_intestine_terminal_ileum
+GTEX-13113-1226-SM-5EGHT	FEMALE	61	2	0	61	in	152.5	lb	28.81	BP-44901	RNA Extraction from Paxgene-derived Lysate Plate Based	10/22/2013	LCSET-4764	02/08/2014	TrueSeq.v1	GTEX-13113	small_intestine_terminal_ileum
+GTEX-131XE-0926-SM-5HL7J	MALE	50	2	0	73	in	263	lb	34.69	BP-45247	RNA Extraction from Paxgene-derived Lysate Plate Based	10/29/2013	LCSET-4807	02/28/2014	TrueSeq.v1	GTEX-131XE	small_intestine_terminal_ileum
+GTEX-131XF-1326-SM-5GCMQ	MALE	60	3	1	67	in	202.164	lb	31.66	BP-44172	RNA Extraction from Paxgene-derived Lysate Plate Based	10/01/2013	LCSET-4795	02/23/2014	TrueSeq.v1	GTEX-131XF	small_intestine_terminal_ileum
+GTEX-131XG-1726-SM-5LZUR	FEMALE	55	3	0	64	in	145.5	lb	24.97	BP-43956	RNA Extraction from Paxgene-derived Lysate Plate Based	09/25/2013	LCSET-4900	03/23/2014	TrueSeq.v1	GTEX-131XG	small_intestine_terminal_ileum
+GTEX-133LE-1426-SM-5IFH1	FEMALE	26	3	99	69	in	225.4	lb	33.28	BP-45499	RNA Extraction from Paxgene-derived Lysate Plate Based	11/05/2013	LCSET-4813	03/05/2014	TrueSeq.v1	GTEX-133LE	small_intestine_terminal_ileum
+GTEX-1399R-2026-SM-5K7WN	MALE	38	3	0	66	in	198.4	lb	32.02	BP-46482	RNA Extraction from Paxgene-derived Lysate Plate Based	12/03/2013	LCSET-4819	03/16/2014	TrueSeq.v1	GTEX-1399R	small_intestine_terminal_ileum
+GTEX-1399S-2026-SM-5KM4B	FEMALE	33	3	0	63	in	110.2	lb	19.52	BP-45485	RNA Extraction from Paxgene-derived Lysate Plate Based	11/05/2013	LCSET-4821	03/23/2014	TrueSeq.v1	GTEX-1399S	small_intestine_terminal_ileum
+GTEX-1399U-2126-SM-5IFEZ	FEMALE	50	3	0	61	in	119	lb	22.48	BP-45499	RNA Extraction from Paxgene-derived Lysate Plate Based	11/05/2013	LCSET-4813	03/05/2014	TrueSeq.v1	GTEX-1399U	small_intestine_terminal_ileum
+GTEX-139T6-1026-SM-5IJGC	MALE	50	3	0	65	in	198.4	lb	33.01	BP-45499	RNA Extraction from Paxgene-derived Lysate Plate Based	11/05/2013	LCSET-4815	03/13/2014	TrueSeq.v1	GTEX-139T6	small_intestine_terminal_ileum
+GTEX-139YR-2226-SM-5IFFW	MALE	53	3	0	74	in	154	lb	19.77	BP-46589	RNA Extraction from Paxgene-derived Lysate Plate Based	12/04/2013	LCSET-4813	03/05/2014	TrueSeq.v1	GTEX-139YR	small_intestine_terminal_ileum
+GTEX-13CF3-1226-SM-5LZXN	FEMALE	62	3	0	63	in	145.5	lb	25.77	BP-45782	RNA Extraction from Paxgene-derived Lysate Plate Based	11/14/2013	LCSET-4901	03/23/2014	TrueSeq.v1	GTEX-13CF3	small_intestine_terminal_ileum
+GTEX-13D11-0726-SM-5LZZB	FEMALE	58	3	0	62	in	158.7	lb	29.02	BP-45782	RNA Extraction from Paxgene-derived Lysate Plate Based	11/14/2013	LCSET-4901	03/23/2014	TrueSeq.v1	GTEX-13D11	small_intestine_terminal_ileum
+GTEX-13FH7-1226-SM-5IJFK	FEMALE	55	3	0	64	in	158.7	lb	27.24	BP-46925	RNA Extraction from Paxgene-derived Lysate Plate Based	12/10/2013	LCSET-4815	03/13/2014	TrueSeq.v1	GTEX-13FH7	small_intestine_terminal_ileum
+GTEX-13FTW-2026-SM-5IJE2	MALE	44	3	0	69	in	176.37	lb	26.04	BP-46650	RNA Extraction from Paxgene-derived Lysate Plate Based	12/05/2013	LCSET-4815	03/13/2014	TrueSeq.v1	GTEX-13FTW	small_intestine_terminal_ileum
+GTEX-13NYB-1826-SM-5J1N3	MALE	49	2	0	76	in	217	lb	26.41	BP-46734	RNA Extraction from Paxgene-derived Lysate Plate Based	12/06/2013	LCSET-4816	03/22/2014	TrueSeq.v1	GTEX-13NYB	small_intestine_terminal_ileum
+GTEX-13O21-1026-SM-5IJDU	MALE	59	3	0	71	in	243.6	lb	33.97	BP-46925	RNA Extraction from Paxgene-derived Lysate Plate Based	12/10/2013	LCSET-4814	03/04/2014	TrueSeq.v1	GTEX-13O21	small_intestine_terminal_ileum
+GTEX-13O61-1326-SM-5KM31	MALE	68	99	1	72	in	233	lb	31.6	BP-47141	RNA Extraction from Paxgene-derived Lysate Plate Based	12/13/2013	LCSET-4821	03/23/2014	TrueSeq.v1	GTEX-13O61	small_intestine_terminal_ileum
+GTEX-13OVI-1926-SM-5IJCG	FEMALE	66	2	0	66	in	130	lb	20.98	BP-47125	RNA Extraction from Paxgene-derived Lysate Plate Based	12/13/2013	LCSET-4814	03/04/2014	TrueSeq.v1	GTEX-13OVI	small_intestine_terminal_ileum
+GTEX-13PL7-2626-SM-5IFH4	FEMALE	62	3	0	62	in	160.9	lb	29.43	BP-47070	RNA Extraction from Paxgene-derived Lysate Plate Based	12/12/2013	LCSET-4813	03/05/2014	TrueSeq.v1	GTEX-13PL7	small_intestine_terminal_ileum
+GTEX-13QBU-1926-SM-5IJEW	FEMALE	40	3	0	67	in	190	lb	29.75	BP-47051	RNA Extraction from Paxgene-derived Lysate Plate Based	12/12/2013	LCSET-4815	03/13/2014	TrueSeq.v1	GTEX-13QBU	small_intestine_terminal_ileum
+GTEX-13RTK-0826-SM-5Q5C6	MALE	29	3	0	72	in	172	lb	23.32	BP-48448	RNA Extraction from Paxgene-derived Lysate Plate Based	01/17/2014	LCSET-4952	03/29/2014	TrueSeq.v1	GTEX-13RTK	small_intestine_terminal_ileum
+GTEX-13W3W-2026-SM-5K7UL	FEMALE	65	3	0	66	in	148	lb	23.89	BP-47070	RNA Extraction from Paxgene-derived Lysate Plate Based	12/12/2013	LCSET-4818	03/12/2014	TrueSeq.v1	GTEX-13W3W	small_intestine_terminal_ileum
+GTEX-145LT-1026-SM-5LU9O	MALE	44	3	0	73	in	222	lb	29.29	BP-47591	RNA Extraction from Paxgene-derived Lysate Plate Based	12/18/2013	LCSET-4899	03/23/2014	TrueSeq.v1	GTEX-145LT	small_intestine_terminal_ileum
+GTEX-145ME-0926-SM-5O9AR	FEMALE	46	2	0	67	in	200	lb	31.32	BP-47675	RNA Extraction from Paxgene-derived Lysate Plate Based	12/19/2013	LCSET-4909	03/20/2014	TrueSeq.v1	GTEX-145ME	small_intestine_terminal_ileum
+GTEX-148VJ-2226-SM-5NQ9M	MALE	70	3	0	74	in	207	lb	26.57	BP-47696	RNA Extraction from Paxgene-derived Lysate Plate Based	12/20/2013	LCSET-4907	03/21/2014	TrueSeq.v1	GTEX-148VJ	small_intestine_terminal_ileum
+GTEX-14DAR-1426-SM-5RQIR	MALE	50	3	0	69	in	207	lb	30.57	BP-48576	RNA Extraction from Paxgene-derived Lysate Plate Based	01/22/2014	LCSET-4955	04/01/2014	TrueSeq.v1	GTEX-14DAR	small_intestine_terminal_ileum
+GTEX-14E6E-1626-SM-5RQI7	MALE	31	3	0	68	in	211.8	lb	32.2	BP-48576	RNA Extraction from Paxgene-derived Lysate Plate Based	01/22/2014	LCSET-4955	04/01/2014	TrueSeq.v1	GTEX-14E6E	small_intestine_terminal_ileum
+GTEX-UPK5-2026-SM-4JBIM	MALE	49	3	99	71	in	209	lb	29.15	BP-30218	RNA isolation_PAXgene Tissue miRNA	08/27/2012	LCSET-3561	07/20/2013	TrueSeq.v1	GTEX-UPK5	small_intestine_terminal_ileum
+GTEX-VJYA-0926-SM-4KL1N	MALE	67	2	0	66	in	177	lb	28.57	BP-26874	RNA isolation_PAXgene Tissue miRNA	07/02/2012	LCSET-3626	08/10/2013	TrueSeq.v1	GTEX-VJYA	small_intestine_terminal_ileum
+GTEX-VUSG-1726-SM-4KKZL	MALE	59	3	0	70	in	145	lb	20.8	BP-27120	RNA isolation_PAXgene Tissue miRNA	07/09/2012	LCSET-3626	08/10/2013	TrueSeq.v1	GTEX-VUSG	small_intestine_terminal_ileum
+GTEX-WEY5-1526-SM-4LMJF	FEMALE	44	3	0	61	in	112	lb	21.16	BP-27495	RNA isolation_PAXgene Tissue miRNA	07/17/2012	LCSET-3631	08/07/2013	TrueSeq.v1	GTEX-WEY5	small_intestine_terminal_ileum
+GTEX-WFG7-1726-SM-4LVME	MALE	25	3	0	70	in	175	lb	25.11	BP-27322	RNA isolation_PAXgene Tissue miRNA	07/12/2012	LCSET-3632	08/08/2013	TrueSeq.v1	GTEX-WFG7	small_intestine_terminal_ileum
+GTEX-WFG8-1626-SM-4LVMB	MALE	28	3	98	65	in	180	lb	29.95	BP-27442	RNA isolation_PAXgene Tissue miRNA	07/16/2012	LCSET-3632	08/08/2013	TrueSeq.v1	GTEX-WFG8	small_intestine_terminal_ileum
+GTEX-WFJO-0926-SM-4LVM2	MALE	37	3	0	70	in	242.44	lb	34.78	BP-27446	RNA isolation_PAXgene Tissue miRNA	07/16/2012	LCSET-3632	08/08/2013	TrueSeq.v1	GTEX-WFJO	small_intestine_terminal_ileum
+GTEX-WFON-1526-SM-4LVMP	MALE	43	3	98	74	in	235	lb	30.17	BP-27751	RNA isolation_PAXgene Tissue miRNA	07/23/2012	LCSET-3632	08/08/2013	TrueSeq.v1	GTEX-WFON	small_intestine_terminal_ileum
+GTEX-WH7G-1626-SM-4LVMY	MALE	49	3	0	75	in	198	lb	24.75	BP-27493	RNA isolation_PAXgene Tissue miRNA	07/17/2012	LCSET-3632	08/08/2013	TrueSeq.v1	GTEX-WH7G	small_intestine_terminal_ileum
+GTEX-WHSB-1026-SM-4M1XN	MALE	50	3	0	70	in	192	lb	27.55	BP-27514	RNA isolation_PAXgene Tissue miRNA	07/17/2012	LCSET-3633	08/24/2013	TrueSeq.v1	GTEX-WHSB	small_intestine_terminal_ileum
+GTEX-WQUQ-2426-SM-4MVNW	MALE	66	3	99	74	in	219	lb	28.11	BP-28815	RNA isolation_PAXgene Tissue miRNA	08/06/2012	LCSET-3652	08/10/2013	TrueSeq.v1	GTEX-WQUQ	small_intestine_terminal_ileum
+GTEX-WRHK-1026-SM-4MVOD	FEMALE	21	3	0	64	in	136	lb	23.34	BP-28357	RNA isolation_PAXgene Tissue miRNA	07/31/2012	LCSET-3652	08/10/2013	TrueSeq.v1	GTEX-WRHK	small_intestine_terminal_ileum
+GTEX-WY7C-1826-SM-4ONCE	MALE	54	3	98	69	in	171.38	lb	25.31	BP-29473	RNA isolation_PAXgene Tissue miRNA	08/15/2012	LCSET-3653	08/14/2013	TrueSeq.v1	GTEX-WY7C	small_intestine_terminal_ileum
+GTEX-WYJK-1526-SM-4ONCW	MALE	51	3	98	71	in	241.56	lb	33.69	BP-29482	RNA isolation_PAXgene Tissue miRNA	08/15/2012	LCSET-3653	08/14/2013	TrueSeq.v1	GTEX-WYJK	small_intestine_terminal_ileum
+GTEX-X15G-1426-SM-4PQZK	FEMALE	55	3	0	63	in	157.08	lb	27.82	BP-30509	RNA isolation_PAXgene Tissue miRNA	09/04/2012	LCSET-3735	08/31/2013	TrueSeq.v1	GTEX-X15G	small_intestine_terminal_ileum
+GTEX-X5EB-1626-SM-4E3IV	MALE	49	3	0	70	in	239.8	lb	34.4	BP-36201	RNA isolation_PAXgene Tissue miRNA	02/19/2013	LCSET-3416	07/12/2013	TrueSeq.v1	GTEX-X5EB	small_intestine_terminal_ileum
+GTEX-XAJ8-0526-SM-47JYK	MALE	45	3	0	72	in	168.74	lb	22.88	BP-31440	RNA isolation_PAXgene Tissue miRNA	09/25/2012	LCSET-2974	04/11/2013	TrueSeq.v1	GTEX-XAJ8	small_intestine_terminal_ileum
+GTEX-XBED-1426-SM-4AT4G	MALE	60	3	0	64	in	156.2	lb	26.81	BP-31651	RNA isolation_PAXgene Tissue miRNA	10/01/2012	LCSET-3137	05/15/2013	TrueSeq.v1	GTEX-XBED	small_intestine_terminal_ileum
+GTEX-XGQ4-1326-SM-4GIDU	MALE	50	3	0	60	in	149.6	lb	29.21	BP-32244	RNA isolation_PAXgene Tissue miRNA	10/17/2012	LCSET-3479	07/19/2013	TrueSeq.v1	GTEX-XGQ4	small_intestine_terminal_ileum
+GTEX-XMK1-1826-SM-4B66F	MALE	44	3	0	69	in	178.2	lb	26.31	BP-33556	RNA isolation_PAXgene Tissue miRNA	11/26/2012	LCSET-3141	05/13/2013	TrueSeq.v1	GTEX-XMK1	small_intestine_terminal_ileum
+GTEX-XPVG-1726-SM-4B65W	MALE	59	3	0	68	in	224.4	lb	34.12	BP-33940	RNA isolation_PAXgene Tissue miRNA	12/05/2012	LCSET-3141	05/13/2013	TrueSeq.v1	GTEX-XPVG	small_intestine_terminal_ileum
+GTEX-XUZC-1426-SM-4BRV3	FEMALE	31	3	0	66	in	187	lb	30.18	BP-34543	RNA isolation_PAXgene Tissue miRNA	12/19/2012	LCSET-3152	05/27/2013	TrueSeq.v1	GTEX-XUZC	small_intestine_terminal_ileum
+GTEX-XXEK-1026-SM-4BRUW	MALE	53	3	0	70	in	154.44	lb	22.16	BP-34479	RNA isolation_PAXgene Tissue miRNA	12/18/2012	LCSET-3152	05/27/2013	TrueSeq.v1	GTEX-XXEK	small_intestine_terminal_ileum
+GTEX-Y111-2226-SM-4SOJB	MALE	50	3	0	69	in	160	lb	23.63	BP-35206	RNA isolation_PAXgene Tissue miRNA	01/16/2013	LCSET-3995	09/19/2013	TrueSeq.v1	GTEX-Y111	small_intestine_terminal_ileum
+GTEX-Y114-1426-SM-4TT6W	FEMALE	50	2	0	65	in	146.74	lb	24.42	BP-35206	RNA isolation_PAXgene Tissue miRNA	01/16/2013	LCSET-4016	09/28/2013	TrueSeq.v1	GTEX-Y114	small_intestine_terminal_ileum
+GTEX-Y3I4-1326-SM-4TT8Z	MALE	59	3	0	69	in	210.32	lb	31.06	BP-35836	RNA isolation_PAXgene Tissue miRNA	02/06/2013	LCSET-4016	09/28/2013	TrueSeq.v1	GTEX-Y3I4	small_intestine_terminal_ileum
+GTEX-Y3IK-1726-SM-4YCCR	FEMALE	57	2	0	65	in	195.8	lb	32.58	BP-35803	RNA isolation_PAXgene Tissue miRNA	02/05/2013	LCSET-4197	11/20/2013	TrueSeq.v1	GTEX-Y3IK	small_intestine_terminal_ileum
+GTEX-Y5LM-1626-SM-4VDTB	FEMALE	42	3	0	66	in	140.8	lb	22.72	BP-42087	RNA Extraction from Paxgene-derived Lysate Plate Based	08/08/2013	LCSET-4040	10/17/2013	TrueSeq.v1	GTEX-Y5LM	small_intestine_terminal_ileum
+GTEX-Y5V5-1826-SM-4VDS5	FEMALE	61	3	0	60	in	138.6	lb	27.07	BP-42185	RNA Extraction from Paxgene-derived Lysate Plate Based	08/12/2013	LCSET-4040	10/17/2013	TrueSeq.v1	GTEX-Y5V5	small_intestine_terminal_ileum
+GTEX-Y9LG-1626-SM-5IFHM	MALE	32	3	0	65	in	182.6	lb	30.38	BP-45268	RNA Extraction from Paxgene-derived Lysate Plate Based	10/29/2013	LCSET-4830	03/20/2014	TrueSeq.v1	GTEX-Y9LG	small_intestine_terminal_ileum
+GTEX-YB5E-1526-SM-5IFIE	MALE	49	3	0	68	in	140.8	lb	21.41	BP-45247	RNA Extraction from Paxgene-derived Lysate Plate Based	10/29/2013	LCSET-4830	03/20/2014	TrueSeq.v1	GTEX-YB5E	small_intestine_terminal_ileum
+GTEX-YEC4-1726-SM-4W21E	MALE	40	3	0	70	in	207.01	lb	29.7	BP-42185	RNA Extraction from Paxgene-derived Lysate Plate Based	08/12/2013	LCSET-4049	10/20/2013	TrueSeq.v1	GTEX-YEC4	small_intestine_terminal_ileum
+GTEX-YF7O-1826-SM-5IFIU	MALE	53	3	0	73	in	220	lb	29.02	BP-45395	RNA Extraction from Paxgene-derived Lysate Plate Based	11/01/2013	LCSET-4830	03/20/2014	TrueSeq.v1	GTEX-YF7O	small_intestine_terminal_ileum
+GTEX-Z9EW-0926-SM-5CVMM	MALE	47	3	0	72	in	222	lb	30.11	BP-45390	RNA Extraction from Paxgene-derived Lysate Plate Based	11/01/2013	LCSET-4633	02/15/2014	TrueSeq.v1	GTEX-Z9EW	small_intestine_terminal_ileum
+GTEX-ZA64-1226-SM-5HL7B	MALE	26	3	0	72	in	174	lb	23.6	BP-45395	RNA Extraction from Paxgene-derived Lysate Plate Based	11/01/2013	LCSET-4807	02/28/2014	TrueSeq.v1	GTEX-ZA64	small_intestine_terminal_ileum
+GTEX-ZAB5-1526-SM-5HL9P	MALE	52	3	0	66	in	206	lb	33.25	BP-45395	RNA Extraction from Paxgene-derived Lysate Plate Based	11/01/2013	LCSET-4807	02/28/2014	TrueSeq.v1	GTEX-ZAB5	small_intestine_terminal_ileum
+GTEX-ZC5H-2326-SM-4WAYT	FEMALE	41	3	0	72	in	178	lb	24.14	BP-42024	RNA isolation_PAXgene Tissue miRNA	08/07/2013	LCSET-4162	10/14/2013	TrueSeq.v1	GTEX-ZC5H	small_intestine_terminal_ileum
+GTEX-ZEX8-1826-SM-57WBH	MALE	54	3	0	70	in	220	lb	31.56	BP-42743	RNA Extraction from Paxgene-derived Lysate Plate Based	08/27/2013	LCSET-4415	12/21/2013	TrueSeq.v1	GTEX-ZEX8	small_intestine_terminal_ileum
+GTEX-ZF29-1626-SM-4WKFJ	FEMALE	66	3	0	61	in	137	lb	25.88	BP-42869	RNA Extraction from Paxgene-derived Lysate Plate Based	08/29/2013	LCSET-4170	10/28/2013	TrueSeq.v1	GTEX-ZF29	small_intestine_terminal_ileum
+GTEX-ZF2S-1726-SM-57WFT	FEMALE	53	3	0	66	in	183	lb	29.53	BP-42743	RNA Extraction from Paxgene-derived Lysate Plate Based	08/27/2013	LCSET-4416	12/21/2013	TrueSeq.v1	GTEX-ZF2S	small_intestine_terminal_ileum
+GTEX-ZLFU-1526-SM-4WWBT	MALE	47	2	0	74	in	202	lb	25.93	BP-42869	RNA Extraction from Paxgene-derived Lysate Plate Based	08/29/2013	LCSET-4179	11/08/2013	TrueSeq.v1	GTEX-ZLFU	small_intestine_terminal_ileum
+GTEX-ZLV1-1126-SM-4WWBW	FEMALE	61	3	0	65	in	185	lb	30.78	BP-42826	RNA Extraction from Paxgene-derived Lysate Plate Based	08/28/2013	LCSET-4179	11/08/2013	TrueSeq.v1	GTEX-ZLV1	small_intestine_terminal_ileum
+GTEX-ZP4G-1626-SM-57WGD	FEMALE	29	3	0	66	in	148.5	lb	23.97	BP-43231	RNA Extraction from Paxgene-derived Lysate Plate Based	09/06/2013	LCSET-4416	12/21/2013	TrueSeq.v1	GTEX-ZP4G	small_intestine_terminal_ileum
+GTEX-ZPCL-1726-SM-57WEO	FEMALE	62	3	0	62	in	176	lb	32.19	BP-43231	RNA Extraction from Paxgene-derived Lysate Plate Based	09/06/2013	LCSET-4416	12/21/2013	TrueSeq.v1	GTEX-ZPCL	small_intestine_terminal_ileum
+GTEX-ZPIC-2326-SM-57WDW	FEMALE	48	3	0	66	in	155	lb	25.01	BP-43308	RNA Extraction from Paxgene-derived Lysate Plate Based	09/09/2013	LCSET-4416	12/21/2013	TrueSeq.v1	GTEX-ZPIC	small_intestine_terminal_ileum
+GTEX-ZQG8-2526-SM-57WEQ	FEMALE	65	3	0	66	in	165	lb	26.63	BP-43231	RNA Extraction from Paxgene-derived Lysate Plate Based	09/06/2013	LCSET-4416	12/21/2013	TrueSeq.v1	GTEX-ZQG8	small_intestine_terminal_ileum
+GTEX-ZQUD-0926-SM-57WE3	MALE	34	2	0	71	in	205.48	lb	28.66	BP-43231	RNA Extraction from Paxgene-derived Lysate Plate Based	09/06/2013	LCSET-4416	12/21/2013	TrueSeq.v1	GTEX-ZQUD	small_intestine_terminal_ileum
+GTEX-ZTPG-2626-SM-57WFX	FEMALE	21	3	0	65	in	165.4	lb	27.52	BP-43441	RNA Extraction from Paxgene-derived Lysate Plate Based	09/11/2013	LCSET-4416	12/21/2013	TrueSeq.v1	GTEX-ZTPG	small_intestine_terminal_ileum
+GTEX-ZTSS-0926-SM-59865	MALE	47	3	0	72	in	237.9	lb	32.26	BP-43231	RNA Extraction from Paxgene-derived Lysate Plate Based	09/06/2013	LCSET-4417	01/23/2014	TrueSeq.v1	GTEX-ZTSS	small_intestine_terminal_ileum
+GTEX-ZTX8-0526-SM-59HLD	MALE	24	2	0	68	in	149	lb	22.65	BP-43231	RNA Extraction from Paxgene-derived Lysate Plate Based	09/06/2013	LCSET-4419	01/14/2014	TrueSeq.v1	GTEX-ZTX8	small_intestine_terminal_ileum
+GTEX-ZVP2-1726-SM-5GU5P	MALE	52	2	0	74	in	200	lb	25.68	BP-43753	RNA Extraction from Paxgene-derived Lysate Plate Based	09/19/2013	LCSET-4803	02/19/2014	TrueSeq.v1	GTEX-ZVP2	small_intestine_terminal_ileum
+GTEX-ZVT2-2126-SM-5NQ93	FEMALE	59	3	0	60	in	123.2	lb	24.06	BP-43639	RNA Extraction from Paxgene-derived Lysate Plate Based	09/16/2013	LCSET-4906	03/22/2014	TrueSeq.v1	GTEX-ZVT2	small_intestine_terminal_ileum
+GTEX-ZVZP-1826-SM-5GZXB	MALE	58	3	0	73	in	226	lb	29.81	BP-43823	RNA Extraction from Paxgene-derived Lysate Plate Based	09/20/2013	LCSET-4804	03/05/2014	TrueSeq.v1	GTEX-ZVZP	small_intestine_terminal_ileum
+GTEX-ZXES-1526-SM-5NQ95	FEMALE	38	3	0	65	in	132	lb	21.96	BP-43639	RNA Extraction from Paxgene-derived Lysate Plate Based	09/16/2013	LCSET-4906	03/22/2014	TrueSeq.v1	GTEX-ZXES	small_intestine_terminal_ileum
+GTEX-ZYFG-2026-SM-5E43Y	FEMALE	67	3	0	64	in	180.4	lb	30.96	BP-44437	RNA Extraction from Paxgene-derived Lysate Plate Based	10/08/2013	LCSET-4635	02/13/2014	TrueSeq.v1	GTEX-ZYFG	small_intestine_terminal_ileum
+GTEX-ZYWO-1526-SM-5SIAL	FEMALE	45	3	0	58	in	99	lb	20.69	BP-43956	RNA Extraction from Paxgene-derived Lysate Plate Based	09/25/2013	LCSET-5174	04/04/2014	TrueSeq.v1	GTEX-ZYWO	small_intestine_terminal_ileum
+GTEX-ZZ64-0526-SM-5GZXM	MALE	24	3	0	65	in	158	lb	26.29	BP-43753	RNA Extraction from Paxgene-derived Lysate Plate Based	09/19/2013	LCSET-4804	03/05/2014	TrueSeq.v1	GTEX-ZZ64	small_intestine_terminal_ileum

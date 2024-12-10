@@ -1,0 +1,13 @@
+"0","# more specific detail of tissue type
+table(colon_clinical$gtex.smtsd)
+"
+"1","
+"
+"1","   Colon - Sigmoid "
+"1","Colon - Transverse "
+"1","
+"
+"1","               386 "
+"1","               423 "
+"1","
+"

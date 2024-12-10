@@ -1,0 +1,4 @@
+"0","#To access the ""raw_counts"" assay, use the assay function:"
+"0","raw_counts <- assay(obj,""raw_counts"")"
+"0","#To access the normalized gene expression (TPM and log transformed), use the assay function:"
+"0","normalized_exp <- assay(obj,""logtpm"")"

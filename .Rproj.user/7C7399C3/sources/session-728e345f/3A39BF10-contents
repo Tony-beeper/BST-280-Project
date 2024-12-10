@@ -1,0 +1,95 @@
+---
+title: "Differential Expression analysis - Solution"
+output: html_document
+---
+Differential expression analysis between males and females small_intestine_terminal_ileum tissue samples obtained from the GTEx Project.
+Use the limma package to perform a differential expression analysis and GO/KEGG pathway enrichment analysis.
+
+## Load packages
+```{r message=FALSE}
+library(Biobase)
+library(limma)
+library(edgeR)
+library(ggfortify)
+```
+
+## Load the data
+```{r}
+clin <- read.delim("gtex_intestine_clinical.txt", stringsAsFactors=FALSE)
+counts <- read.delim("gtex_intestine_expression.txt", stringsAsFactors=FALSE, check.names = FALSE)
+annot <- read.delim("gtex_geneAnnotation.txt", stringsAsFactors=FALSE)
+```
+
+## Make an ExpressionSet
+```{r}
+# Make an ExpressionSet
+obj <- ExpressionSet(assayData=as.matrix(counts), 
+                      phenoData=AnnotatedDataFrame(clin),
+                      featureData=AnnotatedDataFrame(annot))
+#storageMode(obj) <- "environment"
+obj
+```
+
+## Gene filtering
+Filter genes that have less than 1cpm in half of the samples.
+```{r}
+# CPM (counts per million) normalization - counts scaled by the total number of reads
+cpm <- cpm(counts)
+keep <- rowSums(cpm >= 1) >= ncol(obj)/2
+obj2 <- obj[keep,]
+print(obj2)
+
+# Answer
+paste(sum(!(keep)), "genes were filtered")
+```
+
+## Running the differential expression analysis
+```{r}
+condition <- factor(pData(obj2)$gender, levels=c("MALE", "FEMALE"))
+design <- model.matrix(~ condition)
+voomOutput <- voom(exprs(obj2), design)
+fit <- lmFit(voomOutput, design)
+fit <- eBayes(fit)
+res <- topTable(fit, coef="conditionFEMALE", number=Inf)
+```
+
+Number of differentially expressed genes under different cutoffs:
+```{r}
+# P-value < 0.05
+sum(res$P.Value < 0.05)
+
+# Adjusted P-value < 0.05
+sum(res$adj.P.Val < 0.05)
+
+#	Adjusted P-value < 0.05 and absolute log-fold-change > 1
+sum(res$adj.P.Val < 0.05 & abs(res$logFC) > 1)
+```
+
+
+## GO and KEGG pathway enrichment analysis
+```{r}
+# Define the set of differentially expressed genes to test. We will define a cutoff of FDR<0.05 and absolute log fold-change greater than 1.
+up_female <- rownames(res)[which(res$logFC > 0 & res$adj.P.Val < 0.05)]
+up_female_ID <- fData(obj2)[up_female,"entrezgene"]
+
+up_male <- rownames(res)[which(res$logFC < 0 & res$adj.P.Val < 0.05)]
+up_male_ID <- fData(obj2)[up_male,"entrezgene"]
+
+# Perform over-representation analyses for Gene Ontology terms using the limma package
+go_female <- goana(up_female_ID, species="Hs")
+# This is the list of top GO terms enriched for genes highly expressed in females
+topGO(go_female, ontology = "BP")
+
+go_male <- goana(up_male_ID, species="Hs")
+# This is the list of top GO terms enriched for genes highly expressed in males
+topGO(go_male, ontology = "BP")
+
+# Perform over-representation analyses for KEGG pathways
+kegg_female <- kegga(up_female_ID, species="Hs")
+# This is the list of top KEGG pathwayss enriched for genes highly expressed in females
+topKEGG(kegg_female)
+
+kegg_male <- kegga(up_male_ID, species="Hs")
+# This is the list of top KEGG pathways enriched for genes highly expressed in males
+topKEGG(kegg_male)
+```
