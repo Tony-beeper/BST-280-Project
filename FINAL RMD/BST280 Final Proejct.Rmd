@@ -184,9 +184,14 @@ plot(x=res$logFC, y=-log(res$adj.P.Val), xlab="log-fold-change", ylab="-log(FDR)
 
 ```
 
+
 ```{r}
 knitr::include_graphics("./Volcano.png")
 ```
+
+#### Volcano Interpretation:
+The graph does not show any concerning pattern and follow the lecture example. Plot shows significant number of differentially expressed genes between the TGCA and GTEX.
+
 
 ### MA Plot
 ```{r ma-plot, echo=FALSE, eval = FALSE}
@@ -200,11 +205,12 @@ knitr::include_graphics("./MA.png")
 ```
 
 
+#### MA plot Interpretation:
+The graph does not show any concerning pattern and follow the lecture example. With steady logFC throughout all average log-expression. 
+
+
 <!-- #### MA plot and Voom Interpretation: -->
 <!-- The graphs are as expected as the examples shown in the class examples. Indicate no abnormalities. -->
-
-
-
 
 ## GO and KEGG Enrichment Analysis
 
