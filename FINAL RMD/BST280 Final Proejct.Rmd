@@ -7,22 +7,28 @@ output:
     toc: true
     toc_depth: 2
     number_sections: true
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    latex_engine: xelatex
 ---
 
 # Introduction
 
-Pancreatic cancer is one of the deadliest malignancies worldwide, with a five-year survival rate of less than 10% due to its aggressive nature(Chen, 2023), limited treatment options and late diagnosis. Among pancreatic cancers, pancreatic adenocarcinoma (PAAD) accounts for the majority of cases and creates challenges to early detection and therapeutic intervention. Understanding the molecular mechanisms driving PAAD is important for developing novel diagnostic markers and therapeutic targets to improve patient care(Wang, 2021).
+Pancreatic cancer is one of the deadliest malignancies worldwide. It has a five-year survival rate of less than 10% due to its aggressive nature(Chen, 2023), limited treatment options and late diagnosis. Among pancreatic cancers, pancreatic adenocarcinoma (PAAD) accounts for the most of cases. It has challenges to early detection and therapeutic intervention. Understanding the molecular mechanisms driving PAAD is important for developing diagnostic markers and therapeutic targets to improve patient care(Wang, 2021).
 
-This study aims to identify genes that are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue, leveraging genetic data from The Cancer Genome Atlas (TCGA) and the Genotype-Tissue Expression (GTEx) project. By integrating advanced bioinformatics approaches, we seek to uncover key biological processes, pathways, and molecular functions associated with PAAD development and progression.
+This study aims to identify genes that are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue, using genetic data from The Cancer Genome Atlas (TCGA) and the Genotype-Tissue Expression (GTEx) project. By integrating advanced bioinformatics approaches, we seek to uncover main biological processes, pathways, and molecular functions associated with PAAD development and progression.
 
-Our research addresses the following key questions:
+Our research is as below:
 
 What genes are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue?
 
 Which biological processes and pathways are enriched in the differentially expressed genes?
+
 How do these findings contribute to our understanding of the molecular mechanisms underlying pancreatic adenocarcinoma?
 
-Through data preprocessing, differential gene expression analysis(DEGs), pathway enrichment analysis(GSEA), and network inference(PANDA), this project will provide insights into the biology of pancreatic adenocarcinoma. By stratifying data based on sex, diabetes status,and alcohol consumption, we further aim to investigate molecular features that may refine our understanding of PAAD heterogeneity and its clinical implications.
+With data preprocessing, differential gene expression analysis(DEGs), pathway enrichment analysis(GSEA), and network inference(PANDA), this project will provide insights into the biology of pancreatic adenocarcinoma. By stratifying data based on sex, diabetes status,and alcohol consumption, we further aim to investigate molecular features that may refine our understanding of PAAD heterogeneity and its clinical implications.
 
 # Methods & Result: TCGA VS GTEx
 
