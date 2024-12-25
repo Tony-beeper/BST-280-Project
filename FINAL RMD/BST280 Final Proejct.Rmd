@@ -20,9 +20,9 @@ Pancreatic cancer is one of the deadliest malignancies worldwide. It has a five-
 
 This study aims to identify genes that are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue, using genetic data from The Cancer Genome Atlas (TCGA) and the Genotype-Tissue Expression (GTEx) project. By integrating advanced bioinformatics approaches, we seek to uncover main biological processes, pathways, and molecular functions associated with PAAD development and progression.
 
-Our research is as below:
+Our main research questions are as below:
 
-What genes are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue?
+What genes are differentially expressed between normal pancreatic tissue(GTEx) and pancreatic adenocarcinoma tissue(TCGA)?
 
 Which biological processes and pathways are enriched in the differentially expressed genes?
 
@@ -30,7 +30,7 @@ How do these findings contribute to our understanding of the molecular mechanism
 
 With data preprocessing, differential gene expression analysis(DEGs), pathway enrichment analysis(GSEA), and network inference(PANDA), this project will provide insights into the biology of pancreatic adenocarcinoma. By stratifying data based on sex, diabetes status,and alcohol consumption, we further aim to investigate molecular features that may refine our understanding of PAAD heterogeneity and its clinical implications.
 
-# Methods & Result: TCGA VS GTEx
+# Main Reseasrch Methods & Result: TCGA VS GTEx
 
 ### Data Sources
 - **TCGA (PAAD):** Pancreatic adenocarcinoma samples.
@@ -430,24 +430,14 @@ knitr::include_graphics("./single-gene-2.png")
 The CTRB2 gene(NCBI, 2024) is located on the q arm of chromosome 16, and encodes a principal precursor involved in the activation of pancreatic enzymes, thus dysregulation of this gene results in imbalances in pancreatic enzyme activity, and inversions in this gene are associated with chronic inflammation of the pancreas. Specifically in relation to pancreatic cancer, low expression(Maturana et al., 2021) of CTRB2, via gene variations(Jermusyk et al., 2021) or otherwise, confers risk of cancer. The relationship between CTRB2 and type 2 diabetes(Maturana et al., 2021), as well as chronic pancreatitis, risk factors for pancreatic cancer, may further explain the association of this gene with pancreatic cancer. 
 
 
-# Methods & Result: Male vs Female
+# Secondary Research Methods & Result: Male vs Female
+
+## Brief
+
+Most of the steps are the same as in the TCGA vs GTEX analysis(analogous, similar purpose). Since this is our secondary research question, we have only drawn biological conclusions based on the overall analysis without examining detailed information such as individual KEGG, GO, and single gene analyses. Network Analysis, GO, KEGG, and DE were all performed, but with less interpretation compared to our primary research question (TCGA vs GTEX) due to limited time. Feel free to jump to the conclusion of this section if wanted.
+
 
 ## EDA
-### PCA
-```{r, eval = FALSE}
-tcga_exprs_filtered <- assay(tcga_filtered, "raw_counts")
-
-# PCA - do we work here with results after filtering genes or not?
-PCA <- prcomp(t(tcga_logtpm))
-p <- autoplot(PCA, data = as.data.frame(colData(tcga)), 
-              colour="tcga.gdc_cases.demographic.gender")
-p
-```
-
-```{r}
-knitr::include_graphics("./pca_sex.png")
-```
-
 
 ### Limma-Voom
 ```{r, eval = FALSE}
@@ -472,6 +462,23 @@ plotSA(fit_sex, main="Final model mean-variance trend")
 ```{r}
 knitr::include_graphics("./mean_var_sex.png")
 ```
+
+### PCA
+```{r, eval = FALSE}
+tcga_exprs_filtered <- assay(tcga_filtered, "raw_counts")
+
+# PCA - do we work here with results after filtering genes or not?
+PCA <- prcomp(t(tcga_logtpm))
+p <- autoplot(PCA, data = as.data.frame(colData(tcga)), 
+              colour="tcga.gdc_cases.demographic.gender")
+p
+```
+
+```{r}
+knitr::include_graphics("./pca_sex.png")
+```
+
+In the EDA section, the mean variance trend, limma-voom, both look fine as per lecture examples. The PCA is not as clearly separated between the two sets(Male vs Female) compared to the TCGA vs GTEx analysis.
 
 ## GO Enrichment Analysis
 ### Go: Over expressed in females
@@ -605,7 +612,18 @@ knitr::include_graphics("./panda_sex.png")
 ```
 
 
-# Methods & Result: Diabetic VS Non-Diabetic
+## Gender Analysis Conclusion
+
+Our analysis found 20 differentially expressed genes – 14 on the Y chromosome, 5 on the X chromosome, and 1 on a non-sex chromosome. The non-sex chromosome gene is a long intergenic non-protein coding RNA. The differences on the sex chromosomes were expected because of the gender comparison. The single gene on the non-sex chromosome is interesting and could be worth looking into further.
+
+
+# Secondary Research Methods & Result: Diabetic VS Non-Diabetic
+
+## Brief
+
+Most of the steps are the same as in the TCGA vs GTEX analysis(analogous, similar purpose). Since this is our secondary research question, we have only drawn biological conclusions based on the overall analysis without examining detailed information such as individual KEGG, GO, and single gene analyses. Network Analysis, GO, KEGG, and DE were all performed, but with less interpretation compared to our primary research question (TCGA vs GTEX) due to limited time. Feel free to jump to the conclusion of this section if wanted.
+
+
 ## EDA
 ### Voom
 ```{r, eval = FALSE}
@@ -638,6 +656,7 @@ knitr::include_graphics("./mean_diabetes.png")
 knitr::include_graphics("./pca_diabetes.png")
 ```
 
+In the EDA section, the mean variance trend, limma-voom, both look fine as per lecture examples. The PCA is not as clearly separated between the two sets(Diabetic vs Non-Diabetic) compared to the TCGA vs GTEx analysis.
 
 ## Network Analysis
 
@@ -659,7 +678,7 @@ visLegend(net, main="Legend", position="right", ncol=1)
 knitr::include_graphics("./diabetes_graph.png")
 ```
 
-### Kegg low in diabetic
+### KEGG low in diabetic
 ```{r, eval = FALSE}
 library(tidyverse)
 
@@ -743,7 +762,17 @@ g+geom_point(aes(fill=NES), shape=21, colour="white")+
 knitr::include_graphics("./panda_diabetes.png")
 ```
 
-# Methods & Result: Alcoholic Consumption
+
+## Diabetic Analysis Conclusion
+
+Our analysis comparing diabetic and non-diabetic cancer groups found no differentially expressed genes with a log-fold change of 1. However, network analysis with PANDA showed some interesting differences in gene networks. PINX1(You, 2024) was a positively targeted hub, and its over-regulation stood out. STC2(Lin, 2020) was found as a negatively targeted hub. The exact reasons behind these results are not clear, but they point to areas that could be worth exploring to better understand the effects of diabetes and cancer separately.
+
+# Secondary Research Methods & Result: Alcohol Consumption
+
+## Brief
+
+Most of the steps are the same as in the TCGA vs GTEX analysis(analogous, similar purpose). Since this is our secondary research question, we have only drawn biological conclusions based on the overall analysis without examining detailed information such as individual KEGG, GO, and single gene analyses. Network Analysis, GO, KEGG, and DE were all performed, but with less interpretation compared to our primary research question (TCGA vs GTEX) due to limited time. Feel free to jump to the conclusion of this section if wanted.
+
 
 ## EDA
 ### Voom
@@ -880,13 +909,10 @@ g+geom_point(aes(fill=NES), shape=21, colour="white")+
 ```{r}
 knitr::include_graphics("./panda_maotai.png")
 ```
-- Differential network analysis highlighted:
-  - **Diabetes vs Non-Diabetes:** Over-regulation of PINX1.
-  - **Sex Differences:** DEGs mostly on X/Y chromosomes.
 
+## Alcoholic Analysis Conclusion
 
-
-
+Our analysis found no differentially expressed genes related to alcohol. While network analysis was conducted, we did not investigate it further. This area could be interesting for future research to uncover potential hidden mechanisms.
 
 # References
 
@@ -899,6 +925,8 @@ Jermusyk, A., Zhong, J., Connelly, K. E., Petersen, G. M., Westlake, C. J., & Am
 Kim, J., Lee, T. S., Lee, M. H., Cho, I. R., Ryu, J. K., Kim, Y. T., Lee, S. H., & Paik, W. H. (2024). Pancreatic cancer treatment targeting the HGF/c-MET pathway: The MEK inhibitor trametinib. *Cancers, 16*(5), 1056. https://doi.org/10.3390/cancers16051056  
 
 Li, C., Wu, J.-J., Hynes, M., Welling, T. H., Pasca di Magliano, M., & Simeone, D. M. (2011). c-Met is a marker of pancreatic cancer stem cells and therapeutic target. *Gastroenterology, 141*(6), 2218–2227. https://doi.org/10.1053/j.gastro.2011.07.050  
+
+Lin, C., Sun, L., Huang, S., Weng, X., & Wu, Z. (2020). STC2 is a potential prognostic biomarker for pancreatic cancer and promotes migration and invasion by inducing epithelial–mesenchymal transition. *Frontiers in Oncology, 10,* 290. https://doi.org/10.3389/fonc.2020.00290  
 
 López de Maturana, E., Rodríguez, J. A., Alonso, L., Lao, O., Molina-Montes, E., Martín-Antoniano, I. A., Gómez-Rubio, P., Lawlor, R., Carrato, A., Hidalgo, M., Iglesias, M., Molero, X., Löhr, M., Michalski, C., Perea, J., O’Rorke, M., Barberà, V. M., Tardón, A., Farré, A., … Malats, N. (2021). A multilayered post-GWAS assessment on genetic susceptibility to pancreatic cancer. *Genome Medicine, 13*(15). https://doi.org/10.1186/s13073-020-00816-4  
 
@@ -920,4 +948,6 @@ Wikipedia contributors. (n.d.). Tumor metabolome. Wikipedia, The Free Encycloped
 
 Xiao, X., Wan, Z., Liu, X., Chen, H., Zhao, X., Ding, R., Cao, Y., Zhou, F., Qiu, E., Liang, W., Ou, J., Chen, Y., Chen, X., & Zhang, H. (2023). Screening of therapeutic targets for pancreatic cancer by bioinformatics methods. *International Journal of Gastrointestinal Cancer, 55*(6), 420–425. https://doi.org/10.1055/a-2007-2715  
 
-Xiao, Y., Zhang, B., Cloyd, J. M., Xu, G., Du, S., Mao, Y., & Pawlik, T. M. (2022). Gene signature and connectivity mapping to assist with drug prediction for pancreatic ductal adenocarcinoma. *Surgical Oncology, 44,* 101849. https://doi.org/10.1016/j.suronc.2022.101849  
+Xiao, Y., Zhang, B., Cloyd, J. M., Xu, G., Du, S., Mao, Y., & Pawlik, T. M. (2022). Gene signature and connectivity mapping to assist with drug prediction for pancreatic ductal adenocarcinoma. *Surgical Oncology, 44,* 101849. https://doi.org/10.1016/j.suronc.2022.101849
+
+You, D., Tong, K., Li, Y., Zhang, T., Wu, Y., Wang, L., Chen, G., & Zhang, X. (2024). PinX1 plays multifaceted roles in human cancers: A review and perspectives. *Molecular Biology Reports, 51*(1), 1163. https://doi.org/10.1007/s11033-024-10082-x  
