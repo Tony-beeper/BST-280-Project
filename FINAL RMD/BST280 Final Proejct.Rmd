@@ -271,6 +271,10 @@ topKEGG(kegg_tcga)
 knitr::include_graphics("./kegg-tcga.png")
 ```
 
+Interpretation:
+
+The top overexpressed KEGG pathways in pancreatic cancer shows key processes driving tumor growth, immune evasion, and metastasis. **Phagosome, cytokine-cytokine receptor interaction, and cell adhesion molecules** pathways shows an inflammatory microenvironment and enhanced immune signaling that promote tumor survival and immune suppression. **ECM-receptor interaction and focal adhesion** pathways indicate increased cell migration and invasion, for metastasis. These pathways indicate how pancreatic tumors manipulate immune responses and cellular interactions to sustain growth and spread.
+
 #### Over Expressed GTEX
 ```{r, eval = FALSE}
 # Perform over-representation analyses for KEGG pathways
@@ -283,9 +287,9 @@ topKEGG(kegg_gtex)
 knitr::include_graphics("./kegg-gtex.png")
 ```
 
+Interpretation:
 
-- **Upregulated Pathways:** JAK-STAT, TGF-Beta, Citrate Cycle (TCA).
-- **Downregulated Pathways:** Oxidative phosphorylation, ribosome.
+The top overexpressed KEGG pathways in normal pancreatic tissue reflect essential functions for digestion, secretion, and metabolic regulation. **Pancreatic secretion, protein digestion and absorption, and fat digestion** pathways shows the pancreas's role in enzyme production and nutrient processing, which are reduced in tumor cells that prioritize growth over normal function. **Glycine, serine, threonine metabolism, and one-carbon pool by folate** pathways indicate active amino acid and folate metabolism, supporting cellular maintenance and DNA synthesis. **Carbohydrate and starch metabolism** reflects energy utilization, which is often disrupted in tumor cells that shift toward anabolic pathways. These pathways demonstrate the pancreas's role in maintaining metabolic homeostasis, which is lost as cancer progresses. It corroborates with our findings in the GO analysis.
 
 ## Network Analysis
 
