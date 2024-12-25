@@ -209,9 +209,6 @@ knitr::include_graphics("./MA.png")
 The graph does not show any concerning pattern and follow the lecture example. With steady logFC throughout all average log-expression. 
 
 
-<!-- #### MA plot and Voom Interpretation: -->
-<!-- The graphs are as expected as the examples shown in the class examples. Indicate no abnormalities. -->
-
 ## GO and KEGG Enrichment Analysis
 
 ### Gene Ontology (GO)
@@ -227,6 +224,18 @@ topGO(go_tcga, ontology = "BP")
 knitr::include_graphics("./over-tcga.png")
 ```
 
+The GO terms can be grouped into key functional categories related to pancreatic cancer biology.  
+
+**Immune System and Defense** – Overexpressed terms include **immune system process (GO:0002376)**, **regulation of immune system process (GO:0002682)**, **immune response (GO:0006955)**, **defense response (GO:0006952)**, **leukocyte activation (GO:0045321)**, **positive regulation of immune system process (GO:0002684)**, and **cell activation (GO:0001775)**. Tumors manipulate immune responses to promote growth and evade detection, contributing to an inflammatory microenvironment, a hallmark of pancreatic cancer.  
+
+**Cell Adhesion and Migration** – Key terms include **cell adhesion (GO:0007155)**, **regulation of cell adhesion (GO:0030155)**, **cell-cell adhesion (GO:0098609)**, **positive regulation of cell adhesion (GO:0045785)**, and **cell migration (GO:0016477)**. Tumor progression and metastasis involve epithelial-to-mesenchymal transition (EMT), disrupting adhesion and enhancing cell motility and invasiveness.  
+
+**Stimulus Response and Regulation** – This category includes **response to external stimulus (GO:0009605)**, **response to stimulus (GO:0050896)**, **regulation of response to stimulus (GO:0048583)**, **positive regulation of response to stimulus (GO:0048584)**, **positive regulation of biological process (GO:0048518)**, and **positive regulation of cellular process (GO:0048522)**. Overexpression of these genes in pancreatic adenocarcinoma (PAAD) aids tumor survival by promoting immune evasion, adaptation to hypoxia, and resistance to therapy, while driving metastasis through EMT.  
+
+**Multicellular Organism Processes** – Terms include **multicellular organismal process (GO:0032501)** and **regulation of multicellular organismal process (GO:0051239)**. These pathways regulate tumor growth, tissue remodeling, and interactions between cancer cells and the microenvironment. Overexpression supports proliferation, immune modulation, and communication with stromal cells, facilitating tumor survival and metastasis.  
+
+This clustering highlights processes driving tumor progression, immune evasion, and metastatic behavior in pancreatic cancer.
+
 #### Over Expressed GO terms in GTEX
 ```{r, eval = FALSE}
 go_gtex <- goana(up_gtex_ID, species="Hs")
@@ -237,18 +246,18 @@ topGO(go_gtex, ontology = "BP")
 ```{r}
 knitr::include_graphics("./over-gtex.png")
 ```
+The GO terms can be grouped into key functional categories related to normal pancreatic tissue biology.
 
+**Metabolism and Catabolism** – Overexpressed terms include alpha-amino acid catabolic process (GO:1901606), carboxylic acid catabolic process (GO:0046395), organic acid catabolic process (GO:0016054), proteinogenic amino acid catabolic process (GO:0170040), amino acid catabolic process (GO:0009063), L-amino acid catabolic process (GO:0170035), small molecule catabolic process (GO:0044282), alpha-amino acid metabolic process (GO:1901605), amino acid metabolic process (GO:0006520), oxoacid metabolic process (GO:0043436), and organic acid metabolic process (GO:0006082). These pathways reflect the high metabolic activity required to maintain homeostasis and nutrient processing in normal pancreatic tissues, supporting energy production and normal cellular function. In contrast, cancer cells reduce these catabolic and metabolic processes as they shift towards anabolic pathways to fuel rapid proliferation and tumor growth.
 
-- **Immune Responses:** Terms such as "immune system process" and "leukocyte activation".
-- **Cell Adhesion and Migration:** Terms include "cell adhesion" and "cell migration".
-- **Homeostasis:** Includes chemical and nitric oxide signaling.
+**Digestion and Circulation** – Key terms include digestion (GO:0007586), circulatory system process (GO:0003013), and blood circulation (GO:0008015). These processes are critical for maintaining normal pancreatic functions, such as enzyme secretion(like insulin) and nutrient absorption. In normal tissues, digestion and circulation ensure homeostasis and energy supply. However, cancer cells downregulate these functions as they prioritize growth and survival over normal physiological activities.
 
-- **Upregulated Genes:** 3199 genes were significantly upregulated, including:
-  - **ANXA8, FAM83A, MUC16, MET, NT5E, SLC2A1**.
+**Homeostasis and Transport** – This category includes chemical homeostasis (GO:0048878), metal ion transport (GO:0030001), and import across plasma membrane (GO:0098739). Normal cells regulate ion transport and maintain chemical balance to support stable internal environments and proper enzyme activity in the pancreas. Cancer cells disrupt these pathways to promote proliferation and invasion, resulting in lower expression of these homeostatic functions.
 
-- **Downregulated Genes:** 843 genes were significantly downregulated, including:
-  - **CTRB2, IGFBP1, CPA1**.
-  
+**Amino Acid and Nitric Oxide Regulation** – Terms include cellular modified amino acid metabolic process (GO:0006575), cellular modified amino acid catabolic process (GO:0042219), and regulation of nitric oxide mediated signal transduction (GO:0010749). In normal cells, these processes contribute to metabolic balance and cellular communication. Pancreatic cancer cells downregulate these pathways as disrupted signaling and metabolic reprogramming favor tumor progression, immune evasion, and survival.
+
+This clustering highlights the metabolic, circulatory, and homeostatic processes essential for normal pancreatic function, contrasting with the metabolic rewiring and disrupted physiological pathways characteristic of pancreatic cancer cells.
+
 ### KEGG Pathways
 #### Over expressed TCGA
 ```{r kegg-analysis, eval = FALSE}
@@ -332,7 +341,11 @@ visLegend(net, main="Legend", position="right", ncol=1)
 knitr::include_graphics("./panda-cancer-vs-normal.png")
 ```
 
+Plot interpretation:
 
+In the plot above, green arrows mean UP regulated in cancer, red arrows mean DOWN regulated in cancer and we can see a few genes are significantly UP regulated in cancer indicates that pancreatic cancer might replies significantly on certain genes' function. As we mentioned above, certain functions in GO analysis are specifically over-expressed in cancer such as Immune system and defense, cell adhesion etc, we suspect the genes with thick green arrows are related to some functions that cancer heavily relies on.
+
+#### Differentially Expressed Pathways
 ```{r, eval = FALSE}
 ## This plots a bubble plot for the differentially expressed pathways
 
@@ -378,15 +391,9 @@ g+geom_point(aes(fill=NES), shape=21, colour="white")+
 knitr::include_graphics("./panda-bubble.png")
 ```
 
-- Differential network analysis highlighted:
-  - **Diabetes vs Non-Diabetes:** Over-regulation of PINX1.
-  - **Sex Differences:** DEGs mostly on X/Y chromosomes.
+Bubble chart Network Analysis Discussion:
 
-
-
-
-
-## Result Discussion
+Running PANDA on TCGA and GTEx expression data, followed by GSEA, revealed the top targeted pathways in pancreatic cancer. The analysis identified aberrant signaling in pathways such as **JAK/STAT signaling, TGF-β signaling, and the MAPK pathway**, which have been previously linked to various cancer types. Additionally, changes in the activity of pathways like **regulation of actin cytoskeleton, TCA cycle, and oxidative phosphorylation** can serve as indicators of transformations commonly observed in different cancers. This network analysis highlights key pathways that may contribute to pancreatic cancer development and progression.
 
 ## Single Gene Analysis
 
@@ -409,13 +416,13 @@ knitr::include_graphics("./single-gene-2.png")
 
 The CTRB2 gene(https://www.ncbi.nlm.nih.gov/gene/440387) is located on the q arm of chromosome 16, and encodes a principal precursor involved in the activation of pancreatic enzymes, thus dysregulation of this gene results in imbalances in pancreatic enzyme activity, and inversions in this gene are associated with chronic inflammation of the pancreas. Specifically in relation to pancreatic cancer, low expression(https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-020-00816-4) of CTRB2, via gene variations(https://www.sciencedirect.com/science/article/pii/S0002929721003384) or otherwise, confers risk of cancer. The relationship between CTRB2 and type 2 diabetes(https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-020-00816-4), as well as chronic pancreatitis, risk factors for pancreatic cancer, may further explain the association of this gene with pancreatic cancer. 
 
-## Conclusions
-
-- Significant insights into pancreatic cancer pathways.
-- Future research on MET and CTRB2 for therapeutic strategies.
-
 # Methods & Result: Alcoholic Consumption
 # Methods & Result: Diabetic VS Non-Diabetic
+
+- Differential network analysis highlighted:
+  - **Diabetes vs Non-Diabetes:** Over-regulation of PINX1.
+  - **Sex Differences:** DEGs mostly on X/Y chromosomes.
+
 # Methods & Result: Male vs Female
 
 
