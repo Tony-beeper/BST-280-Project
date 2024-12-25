@@ -430,14 +430,461 @@ knitr::include_graphics("./single-gene-2.png")
 The CTRB2 gene(NCBI, 2024) is located on the q arm of chromosome 16, and encodes a principal precursor involved in the activation of pancreatic enzymes, thus dysregulation of this gene results in imbalances in pancreatic enzyme activity, and inversions in this gene are associated with chronic inflammation of the pancreas. Specifically in relation to pancreatic cancer, low expression(Maturana et al., 2021) of CTRB2, via gene variations(Jermusyk et al., 2021) or otherwise, confers risk of cancer. The relationship between CTRB2 and type 2 diabetes(Maturana et al., 2021), as well as chronic pancreatitis, risk factors for pancreatic cancer, may further explain the association of this gene with pancreatic cancer. 
 
 
-# Methods & Result: Alcoholic Consumption
-# Methods & Result: Diabetic VS Non-Diabetic
+# Methods & Result: Male vs Female
 
+## EDA
+### PCA
+```{r, eval = FALSE}
+tcga_exprs_filtered <- assay(tcga_filtered, "raw_counts")
+
+# PCA - do we work here with results after filtering genes or not?
+PCA <- prcomp(t(tcga_logtpm))
+p <- autoplot(PCA, data = as.data.frame(colData(tcga)), 
+              colour="tcga.gdc_cases.demographic.gender")
+p
+```
+
+```{r}
+knitr::include_graphics("./pca_sex.png")
+```
+
+
+### Limma-Voom
+```{r, eval = FALSE}
+# voom
+condition_sex <- factor(colData(tcga_filtered)$tcga.gdc_cases.demographic.gender, 
+                        levels=c("male", "female"))
+design_sex <- model.matrix(~ condition_sex)
+voomOutput_sex <- voom(tcga_exprs_filtered, design_sex, plot=TRUE)
+```
+
+```{r}
+knitr::include_graphics("./voom_sex.png")
+```
+
+### Mean-Var trend
+```{r, eval = FALSE}
+fit_sex <- lmFit(voomOutput_sex, design_sex)
+fit_sex <- eBayes(fit_sex)
+plotSA(fit_sex, main="Final model mean-variance trend")
+```
+
+```{r}
+knitr::include_graphics("./mean_var_sex.png")
+```
+
+## GO Enrichment Analysis
+### Go: Over expressed in females
+```{r, eval = FALSE}
+# Perform over-representation analyses for Gene Ontology terms using the limma package
+go_females <- goana(up_females_ID, species="Hs")
+# This is the list of top GO terms enriched for genes highly expressed in females
+topGO(go_females, ontology = "BP")
+```
+
+```{r}
+knitr::include_graphics("./go_females.png")
+```
+
+
+### Go: Over expressed in males
+```{r, eval = FALSE}
+# Perform over-representation analyses for Gene Ontology terms using the limma package
+go_males <- goana(up_males_ID, species="Hs")
+# This is the list of top GO terms enriched for genes highly expressed in males
+topGO(go_males, ontology = "BP")
+```
+
+```{r}
+knitr::include_graphics("./go_males.png")
+```
+
+## Network Analysis
+### Gender Network
+```{r, eval = FALSE}
+nodes       = data.frame(id = unique(as.vector(as.matrix(edges[,c(1,2)]))), 
+                    label=unique(as.vector(as.matrix(edges[,c(1,2)]))))
+nodes$group = ifelse(nodes$id %in% edges$from, "TF", "gene")
+net <- visNetwork(nodes, edges, width = "100%")
+net <- visGroups(net, groupname = "TF", shape = "triangle",
+                 color = list(background = "purple", border="black"))
+net <- visGroups(net, groupname = "gene", shape = "dot",       
+                 color = list(background = "teal", border="black"))
+visLegend(net, main="Legend", position="right", ncol=1) #GREEN is upregulated in cancer
+```
+
+```{r}
+knitr::include_graphics("./network_sex.png")
+```
+
+### Kegg high in Male
+
+```{r, eval = FALSE}
+library(tidyverse)
+in_degree_male<- male_network_full |> group_by(gene) |>
+  summarize(in_degree = sum(force))
+in_degree_female<- female_network_full |> group_by(gene) |>
+  summarize(in_degree = sum(force))
+
+in_difference <- in_degree_male
+in_difference$in_degree <- in_degree_male$in_degree - in_degree_female$in_degree
+
+pathways <- gmtPathways("c2.cp.kegg_legacy.v2024.1.Hs.entrez.gmt")
+in_difference$gene <- ifelse(annot[match(in_difference$gene, annot$ensembl_gene_id),"hgnc_symbol"]=="",in_difference$gene,  # If no match, keep Ensembl ID
+  annot$entrezgene_id[match(in_difference$gene, annot$ensembl_gene_id)]  # Else, use HGNC symbol
+)
+in_difference <- in_difference[!is.na(in_difference$gene),]
+in_difference <- in_difference[!duplicated(in_difference$gene), ]
+in_difference <- setNames(in_difference$in_degree, in_difference$gene)
+
+fgseaRes <- fgsea(pathways, in_difference, minSize=15, maxSize=500,nPermSimple = 10000)
+sig <- fgseaRes[fgseaRes$padj < 0.05,]
+sig[order(sig$NES)[1:10],] #Lower targeting in females, higher in males
+```
+
+
+```{r}
+knitr::include_graphics("./kegg_male.png")
+```
+
+
+### Kegg high in Females
+
+```{r, eval = FALSE}
+sig[order(-sig$NES)[1:10],] #Lower targeting in males, higher in females
+```
+
+```{r}
+knitr::include_graphics("./kegg_female.png")
+```
+
+### PANDA by Gender
+
+```{r, eval = FALSE}
+dat <- data.frame(fgseaRes)
+# Settings
+fdrcut <- 0.05 # FDR cut-off to use as output for significant signatures
+dencol_neg <- "blue" # bubble plot color for negative ES
+dencol_pos <- "red" # bubble plot color for positive ES
+signnamelength <- 4 # set to remove prefix from signature names (2 for "GO", 4 for "KEGG", 8 for "REACTOME")
+asp <- 3 # aspect ratio of bubble plot
+charcut <- 100 # cut signature name in heatmap to this nr of characters
+a <- as.character(dat$pathway) # 'a' is a great variable name to substitute row names with something more readable
+for (j in 1:length(a)){
+  a[j] <- substr(a[j], signnamelength+2, nchar(a[j]))
+}
+a <- tolower(a) # convert to lower case (you may want to comment this out, it really depends on what signatures you are looking at, c6 signatures contain gene names, and converting those to lower case may be confusing)
+for (j in 1:length(a)){
+  if(nchar(a[j])>charcut) { a[j] <- paste(substr(a[j], 1, charcut), "...", sep=" ")}
+} # cut signature names that have more characters than charcut, and add "..."
+a <- gsub("_", " ", a)
+dat$NAME <- a
+dat2 <- dat[dat[,"padj"]<fdrcut,]
+dat2 <- dat2[order(dat2[,"padj"]),] 
+dat2$signature <- factor(dat2$NAME, rev(as.character(dat2$NAME)))
+sign_neg <- which(dat2[,"NES"]<0) 
+sign_pos <- which(dat2[,"NES"]>0)
+signcol <- rep(NA, length(dat2$signature))
+signcol[sign_neg] <- dencol_neg # text color of negative signatures
+signcol[sign_pos] <- dencol_pos # text color of positive signatures
+signcol <- rev(signcol) # need to revert vector of colors, because ggplot starts plotting these from below
+g<-ggplot(dat2, aes(x=padj,y=signature,size=size))
+g+geom_point(aes(fill=NES), shape=21, colour="white")+
+  theme_bw()+ # white background, needs to be placed before the "signcol" line
+  xlim(0,fdrcut)+
+  scale_size_area(max_size=10,guide="none")+
+  scale_fill_gradient2(low=dencol_neg, high=dencol_pos)+
+  theme(axis.text.y = element_text(colour=signcol))+
+  theme(aspect.ratio=asp, axis.title.y=element_blank()) # test aspect.ratio
+```
+
+
+
+```{r}
+knitr::include_graphics("./panda_sex.png")
+```
+
+
+# Methods & Result: Diabetic VS Non-Diabetic
+## EDA
+### Voom
+```{r, eval = FALSE}
+condition_diabetes <- factor(tcga_colData_filtered_diab$tcga.xml_history_of_diabetes, 
+                             levels=c("NO", "YES"))
+design_diabetes <- model.matrix(~ condition_diabetes)
+voomOutput_diabetes <- voom(tcga_exprs_filtered_diab, design_diabetes, plot=TRUE)
+```
+
+
+```{r}
+knitr::include_graphics("./voom_diabetes.png")
+```
+
+### Mean-Variance
+
+```{r, eval = FALSE}
+fit_diabetes <- lmFit(voomOutput_diabetes, design_diabetes)
+fit_diabetes <- eBayes(fit_diabetes)
+plotSA(fit_diabetes, main="Final model mean-variance trend")
+```
+
+```{r}
+knitr::include_graphics("./mean_diabetes.png")
+```
+
+### PCA
+
+```{r}
+knitr::include_graphics("./pca_diabetes.png")
+```
+
+
+## Network Analysis
+
+### Network Graph
+```{r, eval = FALSE}
+
+nodes     = data.frame(id = unique(as.vector(as.matrix(edges[,c(1,2)]))), 
+                    label=unique(as.vector(as.matrix(edges[,c(1,2)]))))
+nodes$group = ifelse(nodes$id %in% edges$from, "TF", "gene")
+net <- visNetwork(nodes, edges, width = "100%")
+net <- visGroups(net, groupname = "TF", shape = "triangle",
+                 color = list(background = "purple", border="black"))
+net <- visGroups(net, groupname = "gene", shape = "dot",       
+                 color = list(background = "teal", border="black"))
+visLegend(net, main="Legend", position="right", ncol=1)
+```
+
+```{r}
+knitr::include_graphics("./diabetes_graph.png")
+```
+
+### Kegg low in diabetic
+```{r, eval = FALSE}
+library(tidyverse)
+
+in_degree_normal<- normal_network_full |> group_by(gene) |>
+  summarize(in_degree = sum(force))
+in_degree<- network_full |> group_by(gene) |>
+  summarize(in_degree = sum(force))
+in_degree <- in_degree[in_degree$gene %in% in_degree_normal$gene,]
+in_difference <- in_degree_normal
+in_difference$in_degree <- in_degree_normal$in_degree - in_degree$in_degree
+pathways <- gmtPathways("c2.cp.kegg_legacy.v2024.1.Hs.entrez.gmt")
+in_difference$gene <- ifelse(annot[match(in_difference$gene, annot$ensembl_gene_id),"hgnc_symbol"]=="",in_difference$gene,  # If no match, keep Ensembl ID
+  annot$entrezgene_id[match(in_difference$gene, annot$ensembl_gene_id)]  # Else, use HGNC symbol
+)
+in_difference <- in_difference[!is.na(in_difference$gene),]
+in_difference <- in_difference[!duplicated(in_difference$gene), ]
+in_difference <- setNames(in_difference$in_degree, in_difference$gene)
+
+fgseaRes <- fgsea(pathways, in_difference, minSize=15, maxSize=500,nPermSimple = 10000)
+sig <- fgseaRes[fgseaRes$padj < 0.05,]
+sig[order(sig$NES)[1:10],] #Lower targeting in diabetes
+```
+
+
+```{r}
+knitr::include_graphics("./kegg_diabetes_low.png")
+```
+
+### Kegg high in diabetic
+```{r, eval = FALSE}
+sig[order(-sig$NES)[1:10],] #Higher targeting in diabetes
+```
+
+```{r}
+knitr::include_graphics("./kegg_diabetes_high.png")
+```
+
+
+### PANDA KEGG pathway Diabetes
+
+```{r, eval = FALSE}
+dat <- data.frame(fgseaRes)
+# Settings
+fdrcut <- 0.05 # FDR cut-off to use as output for significant signatures
+dencol_neg <- "blue" # bubble plot color for negative ES
+dencol_pos <- "red" # bubble plot color for positive ES
+signnamelength <- 4 # set to remove prefix from signature names (2 for "GO", 4 for "KEGG", 8 for "REACTOME")
+asp <- 3 # aspect ratio of bubble plot
+charcut <- 100 # cut signature name in heatmap to this nr of characters
+a <- as.character(dat$pathway) # 'a' is a great variable name to substitute row names with something more readable
+for (j in 1:length(a)){
+  a[j] <- substr(a[j], signnamelength+2, nchar(a[j]))
+}
+a <- tolower(a) # convert to lower case (you may want to comment this out, it really depends on what signatures you are looking at, c6 signatures contain gene names, and converting those to lower case may be confusing)
+for (j in 1:length(a)){
+  if(nchar(a[j])>charcut) { a[j] <- paste(substr(a[j], 1, charcut), "...", sep=" ")}
+} # cut signature names that have more characters than charcut, and add "..."
+a <- gsub("_", " ", a)
+dat$NAME <- a
+dat2 <- dat[dat[,"padj"]<fdrcut,]
+dat2 <- dat2[order(dat2[,"padj"]),] 
+dat2$signature <- factor(dat2$NAME, rev(as.character(dat2$NAME)))
+sign_neg <- which(dat2[,"NES"]<0) #Up regulated in cancer
+sign_pos <- which(dat2[,"NES"]>0)
+signcol <- rep(NA, length(dat2$signature))
+signcol[sign_neg] <- dencol_neg # text color of negative signatures
+signcol[sign_pos] <- dencol_pos # text color of positive signatures
+signcol <- rev(signcol) # need to revert vector of colors, because ggplot starts plotting these from below
+g<-ggplot(dat2, aes(x=padj,y=signature,size=size))
+g+geom_point(aes(fill=NES), shape=21, colour="white")+
+  theme_bw()+ # white background, needs to be placed before the "signcol" line
+  xlim(0,fdrcut)+
+  scale_size_area(max_size=10,guide="none")+
+  scale_fill_gradient2(low=dencol_neg, high=dencol_pos)+
+  theme(axis.text.y = element_text(colour=signcol))+
+  theme(aspect.ratio=asp, axis.title.y=element_blank()) # test aspect.ratio
+```
+
+
+```{r}
+knitr::include_graphics("./panda_diabetes.png")
+```
+
+# Methods & Result: Alcoholic Consumption
+
+## EDA
+### Voom
+
+```{r, eval = FALSE}
+condition_alcohol <- factor(tcga_colData_filtered_alcohol$tcga.gdc_cases.exposures.alcohol_history, 
+                            levels=c("no", "yes"))
+design_alcohol <- model.matrix(~ condition_alcohol)
+voomOutput_alcohol <- voom(tcga_exprs_filtered_alcohol, design_alcohol, plot=TRUE)
+```
+
+```{r}
+knitr::include_graphics("./voom_alcohol.png")
+```
+
+### Mean Var
+```{r, eval = FALSE}
+fit_alcohol <- lmFit(voomOutput_alcohol, design_alcohol)
+fit_alcohol <- eBayes(fit_alcohol)
+plotSA(fit_alcohol, main="Final model mean-variance trend")
+```
+
+```{r}
+knitr::include_graphics("./mean_var_alcohol.png")
+```
+
+### PCA alcohol
+```{r}
+knitr::include_graphics("./pca_alcohol.png")
+```
+
+In the EDA section, the mean variance trend, limma-voom, both look fine as per lecture examples. The PCA is not as clearly separated between the two sets(Alcoholic vs Non-Alcohol) compared to the TCGA vs GTEx analysis.
+
+## Network Analysis
+### Network Graph
+```{r, eval = FALSE}
+nodes     = data.frame(id = unique(as.vector(as.matrix(edges[,c(1,2)]))), 
+                    label=unique(as.vector(as.matrix(edges[,c(1,2)]))))
+nodes$group = ifelse(nodes$id %in% edges$from, "TF", "gene")
+net <- visNetwork(nodes, edges, width = "100%")
+net <- visGroups(net, groupname = "TF", shape = "triangle",
+                 color = list(background = "purple", border="black"))
+net <- visGroups(net, groupname = "gene", shape = "dot",       
+                 color = list(background = "teal", border="black"))
+visLegend(net, main="Legend", position="right", ncol=1) #GREEN is upregulated in alcohol people
+```
+
+```{r}
+knitr::include_graphics("./network_alcohol.png")
+```
+
+### KEGG(Lower targeting in alcoholics)
+
+```{r, eval = FALSE}
+library(tidyverse)
+out_degree_normal<- normal_network_full |> group_by(tf) |>
+  summarize(out_degree = sum(force))
+out_degree<- network_full |> group_by(tf) |>
+  summarize(out_degree = sum(force))
+in_degree_normal<- normal_network_full |> group_by(gene) |>
+  summarize(in_degree = sum(force))
+in_degree<- network_full |> group_by(gene) |>
+  summarize(in_degree = sum(force))
+in_degree <- in_degree[in_degree$gene %in% in_degree_normal$gene,]
+in_difference <- in_degree_normal
+in_difference$in_degree <- in_degree_normal$in_degree - in_degree$in_degree
+
+pathways <- gmtPathways("c2.cp.kegg_legacy.v2024.1.Hs.entrez.gmt")
+in_difference$gene <- ifelse(annot[match(in_difference$gene, annot$ensembl_gene_id),"hgnc_symbol"]=="",in_difference$gene,  # If no match, keep Ensembl ID
+  annot$entrezgene_id[match(in_difference$gene, annot$ensembl_gene_id)]  # Else, use HGNC symbol
+)
+in_difference <- in_difference[!is.na(in_difference$gene),]
+in_difference <- in_difference[!duplicated(in_difference$gene), ]
+in_difference <- setNames(in_difference$in_degree, in_difference$gene)
+
+fgseaRes <- fgsea(pathways, in_difference, minSize=15, maxSize=500,nPermSimple = 10000)
+sig <- fgseaRes[fgseaRes$padj < 0.05,]
+sig[order(sig$NES)[1:10],] #Lower targeting in alcoholics
+```
+
+```{r}
+knitr::include_graphics("./lower_alcohol.png")
+```
+
+### KEGG(Higher targeting in alcoholics)
+```{r, eval = FALSE}
+sig[order(-sig$NES)[1:10],] #higher  targeting in alcoholics
+```
+
+```{r}
+knitr::include_graphics("./higher_alcohol.png")
+```
+
+### PANDA
+
+```{r, eval = FALSE}
+dat <- data.frame(fgseaRes)
+# Settings
+fdrcut <- 0.05 # FDR cut-off to use as output for significant signatures
+dencol_neg <- "blue" # bubble plot color for negative ES
+dencol_pos <- "red" # bubble plot color for positive ES
+signnamelength <- 4 # set to remove prefix from signature names (2 for "GO", 4 for "KEGG", 8 for "REACTOME")
+asp <- 3 # aspect ratio of bubble plot
+charcut <- 100 # cut signature name in heatmap to this nr of characters
+a <- as.character(dat$pathway) # 'a' is a great variable name to substitute row names with something more readable
+for (j in 1:length(a)){
+  a[j] <- substr(a[j], signnamelength+2, nchar(a[j]))
+}
+a <- tolower(a) # convert to lower case (you may want to comment this out, it really depends on what signatures you are looking at, c6 signatures contain gene names, and converting those to lower case may be confusing)
+for (j in 1:length(a)){
+  if(nchar(a[j])>charcut) { a[j] <- paste(substr(a[j], 1, charcut), "...", sep=" ")}
+} # cut signature names that have more characters than charcut, and add "..."
+a <- gsub("_", " ", a)
+dat$NAME <- a
+dat2 <- dat[dat[,"padj"]<fdrcut,]
+dat2 <- dat2[order(dat2[,"padj"]),] 
+dat2$signature <- factor(dat2$NAME, rev(as.character(dat2$NAME)))
+sign_neg <- which(dat2[,"NES"]<0) #Up regulated in cancer
+sign_pos <- which(dat2[,"NES"]>0)
+signcol <- rep(NA, length(dat2$signature))
+signcol[sign_neg] <- dencol_neg # text color of negative signatures
+signcol[sign_pos] <- dencol_pos # text color of positive signatures
+signcol <- rev(signcol) # need to revert vector of colors, because ggplot starts plotting these from below
+g<-ggplot(dat2, aes(x=padj,y=signature,size=size))
+g+geom_point(aes(fill=NES), shape=21, colour="white")+
+  theme_bw()+ # white background, needs to be placed before the "signcol" line
+  xlim(0,fdrcut)+
+  scale_size_area(max_size=10,guide="none")+
+  scale_fill_gradient2(low=dencol_neg, high=dencol_pos)+
+  theme(axis.text.y = element_text(colour=signcol))+
+  theme(aspect.ratio=asp, axis.title.y=element_blank()) # test aspect.ratio
+```
+
+```{r}
+knitr::include_graphics("./panda_maotai.png")
+```
 - Differential network analysis highlighted:
   - **Diabetes vs Non-Diabetes:** Over-regulation of PINX1.
   - **Sex Differences:** DEGs mostly on X/Y chromosomes.
 
-# Methods & Result: Male vs Female
+
 
 
 
