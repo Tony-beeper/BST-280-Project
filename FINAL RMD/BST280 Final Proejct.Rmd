@@ -11,16 +11,18 @@ output:
 
 # Introduction
 
-Pancreatic cancer remains one of the deadliest malignancies worldwide, with a five-year survival rate of less than 10% due to its aggressive nature, late diagnosis, and limited treatment options. Among pancreatic cancers, pancreatic adenocarcinoma (PAAD) accounts for the majority of cases and poses significant challenges to early detection and effective therapeutic intervention. Understanding the molecular mechanisms driving PAAD is essential for developing novel diagnostic markers and therapeutic targets to improve patient outcomes.
+Pancreatic cancer is one of the deadliest malignancies worldwide, with a five-year survival rate of less than 10% due to its aggressive nature(Chen, 2023), limited treatment options and late diagnosis. Among pancreatic cancers, pancreatic adenocarcinoma (PAAD) accounts for the majority of cases and creates challenges to early detection and therapeutic intervention. Understanding the molecular mechanisms driving PAAD is important for developing novel diagnostic markers and therapeutic targets to improve patient care(Wang, 2021).
 
-This study aims to identify genes that are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue, leveraging transcriptomic data from The Cancer Genome Atlas (TCGA) and the Genotype-Tissue Expression (GTEx) project. By integrating advanced bioinformatics approaches, we seek to uncover key biological processes, pathways, and molecular functions associated with PAAD development and progression.
+This study aims to identify genes that are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue, leveraging genetic data from The Cancer Genome Atlas (TCGA) and the Genotype-Tissue Expression (GTEx) project. By integrating advanced bioinformatics approaches, we seek to uncover key biological processes, pathways, and molecular functions associated with PAAD development and progression.
 
 Our research addresses the following key questions:
 
 What genes are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue?
+
 Which biological processes and pathways are enriched in the differentially expressed genes?
 How do these findings contribute to our understanding of the molecular mechanisms underlying pancreatic adenocarcinoma?
-Through rigorous data preprocessing, differential gene expression analysis, pathway enrichment analysis, and network inference, this project will provide insights into the complex biology of pancreatic adenocarcinoma, potentially identifying novel biomarkers and therapeutic targets. By stratifying data based on sex and diabetes status, we further aim to elucidate subgroup-specific molecular features that may refine our understanding of PAAD heterogeneity and its clinical implications.
+
+Through data preprocessing, differential gene expression analysis(DEGs), pathway enrichment analysis(GSEA), and network inference(PANDA), this project will provide insights into the biology of pancreatic adenocarcinoma. By stratifying data based on sex, diabetes status,and alcohol consumption, we further aim to investigate molecular features that may refine our understanding of PAAD heterogeneity and its clinical implications.
 
 # Methods & Result: TCGA VS GTEX
 
@@ -246,6 +248,7 @@ topGO(go_gtex, ontology = "BP")
 ```{r}
 knitr::include_graphics("./over-gtex.png")
 ```
+
 The GO terms can be grouped into key functional categories related to normal pancreatic tissue biology.
 
 **Metabolism and Catabolism** – Overexpressed terms include alpha-amino acid catabolic process (GO:1901606), carboxylic acid catabolic process (GO:0046395), organic acid catabolic process (GO:0016054), proteinogenic amino acid catabolic process (GO:0170040), amino acid catabolic process (GO:0009063), L-amino acid catabolic process (GO:0170035), small molecule catabolic process (GO:0044282), alpha-amino acid metabolic process (GO:1901605), amino acid metabolic process (GO:0006520), oxoacid metabolic process (GO:0043436), and organic acid metabolic process (GO:0006082). These pathways reflect the high metabolic activity required to maintain homeostasis and nutrient processing in normal pancreatic tissues, supporting energy production and normal cellular function. In contrast, cancer cells reduce these catabolic and metabolic processes as they shift towards anabolic pathways to fuel rapid proliferation and tumor growth.
@@ -345,7 +348,7 @@ visLegend(net, main="Legend", position="right", ncol=1)
 knitr::include_graphics("./panda-cancer-vs-normal.png")
 ```
 
-Plot interpretation:
+**Plot interpretation:**
 
 In the plot above, green arrows mean UP regulated in cancer, red arrows mean DOWN regulated in cancer and we can see a few genes are significantly UP regulated in cancer indicates that pancreatic cancer might replies significantly on certain genes' function. As we mentioned above, certain functions in GO analysis are specifically over-expressed in cancer such as Immune system and defense, cell adhesion etc, we suspect the genes with thick green arrows are related to some functions that cancer heavily relies on.
 
@@ -395,9 +398,9 @@ g+geom_point(aes(fill=NES), shape=21, colour="white")+
 knitr::include_graphics("./panda-bubble.png")
 ```
 
-Bubble chart Network Analysis Discussion:
+**Bubble chart Network Analysis Discussion:**
 
-Running PANDA on TCGA and GTEx expression data, followed by GSEA, revealed the top targeted pathways in pancreatic cancer. The analysis identified aberrant signaling in pathways such as **JAK/STAT signaling, TGF-β signaling, and the MAPK pathway**, which have been previously linked to various cancer types. Additionally, changes in the activity of pathways like **regulation of actin cytoskeleton, TCA cycle, and oxidative phosphorylation** can serve as indicators of transformations commonly observed in different cancers. This network analysis highlights key pathways that may contribute to pancreatic cancer development and progression.
+Running PANDA on TCGA and GTEx expression data, followed by GSEA, revealed the top targeted pathways in pancreatic cancer. The analysis identified aberrant signaling in pathways such as **JAK/STAT signaling(Wang, 2021), TGF-β signaling, and the MAPK pathway**, which have been previously linked to various cancer types. Additionally, changes in the activity of pathways like **regulation of actin cytoskeleton, TCA cycle, and oxidative phosphorylation** can serve as indicators of transformations commonly observed in different cancers. This network analysis highlights key pathways that may contribute to pancreatic cancer development and progression.
 
 ## Single Gene Analysis
 
@@ -465,3 +468,11 @@ Jermusyk, A., Zhong, J., Connelly, K. E., Petersen, G. M., Westlake, C. J., & Am
 National Center for Biotechnology Information (NCBI). (2024). *CTRB2 chymotrypsinogen B2 [Homo sapiens (human)]*. National Library of Medicine (NLM). Retrieved from https://www.ncbi.nlm.nih.gov/gene/440387
 
 National Center for Biotechnology Information (NCBI). (2024). *MET proto-oncogene, receptor tyrosine kinase [Homo sapiens (human)]*. National Library of Medicine (NLM). Retrieved from https://www.ncbi.nlm.nih.gov/gene/4233
+
+
+**Intro: **
+Chen, D., Zhang, S., & Fang, W. (2023). A single-cell atlas of the tumor, stromal and immune microenvironments in pancreatic cancer liver metastasis (GSE197177) [Data set]. NCBI Gene Expression Omnibus. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE197177
+
+
+Wang, S., Zheng, Y., Yang, F., Zhu, L., Zhu, X.-Q., Wang, Z.-F., Wu, X.-L., Zhou, C.-H., Yan, J.-Y., Hu, B.-Y., Kong, B., Fu, D.-L., Bruns, C., Zhao, Y., Qin, L.-X., & Dong, Q.-Z. (2021). The molecular biology of pancreatic adenocarcinoma: Translational challenges and clinical perspectives. *Signal Transduction and Targeted Therapy, 6*(1), 249. https://doi.org/10.1038/s41392-021-00659-4
+
