@@ -24,7 +24,7 @@ How do these findings contribute to our understanding of the molecular mechanism
 
 Through data preprocessing, differential gene expression analysis(DEGs), pathway enrichment analysis(GSEA), and network inference(PANDA), this project will provide insights into the biology of pancreatic adenocarcinoma. By stratifying data based on sex, diabetes status,and alcohol consumption, we further aim to investigate molecular features that may refine our understanding of PAAD heterogeneity and its clinical implications.
 
-# Methods & Result: TCGA VS GTEX
+# Methods & Result: TCGA VS GTEx
 
 ### Data Sources
 - **TCGA (PAAD):** Pancreatic adenocarcinoma samples.
@@ -160,7 +160,7 @@ knitr::include_graphics("./PCA.png")
 
 #### PCA Interpretation
 
-We can see the GTEX and TCGA are clearly separated into two clusters, especially in the PC1 Axis. It indicates there is major difference between the GTEX and TCGA dataset, which is a good sign for further differential analysis.
+We can see the GTEx and TCGA are clearly separated into two clusters, especially in the PC1 Axis. It indicates there is major difference between the GTEx and TCGA dataset, which is a good sign for further differential analysis.
 
 ## Differential Expression Analysis
 
@@ -176,7 +176,7 @@ knitr::include_graphics("./Voom.png")
 ```
 
 #### Voom Interpretation:
-The graph is as expected by statistical theory of variance, where variance decreases as count size increases.
+The graph is as expected by statistical theory of variance, where variance decreases as count size increases.(UC Davis Bioinformatics, 2018)
 
 ### Volcano Plot
 ```{r volcano-plot, echo=FALSE, eval = FALSE}
@@ -228,7 +228,7 @@ knitr::include_graphics("./over-tcga.png")
 
 The GO terms can be grouped into key functional categories related to pancreatic cancer biology.  
 
-**Immune System and Defense** – Overexpressed terms include **immune system process (GO:0002376)**, **regulation of immune system process (GO:0002682)**, **immune response (GO:0006955)**, **defense response (GO:0006952)**, **leukocyte activation (GO:0045321)**, **positive regulation of immune system process (GO:0002684)**, and **cell activation (GO:0001775)**. Tumors manipulate immune responses to promote growth and evade detection, contributing to an inflammatory microenvironment, a hallmark of pancreatic cancer.  
+**Immune System and Defense** – Overexpressed terms include **immune system process (GO:0002376)**, **regulation of immune system process (GO:0002682)**, **immune response (GO:0006955)**, **defense response (GO:0006952)**, **leukocyte activation (GO:0045321)**, **positive regulation of immune system process (GO:0002684)**, and **cell activation (GO:0001775)**. Tumors manipulate immune responses to promote growth and evade detection(Wikipedia, n.d.), contributing to an inflammatory microenvironment, a hallmark of pancreatic cancer.  
 
 **Cell Adhesion and Migration** – Key terms include **cell adhesion (GO:0007155)**, **regulation of cell adhesion (GO:0030155)**, **cell-cell adhesion (GO:0098609)**, **positive regulation of cell adhesion (GO:0045785)**, and **cell migration (GO:0016477)**. Tumor progression and metastasis involve epithelial-to-mesenchymal transition (EMT), disrupting adhesion and enhancing cell motility and invasiveness.  
 
@@ -238,7 +238,7 @@ The GO terms can be grouped into key functional categories related to pancreatic
 
 This clustering highlights processes driving tumor progression, immune evasion, and metastatic behavior in pancreatic cancer.
 
-#### Over Expressed GO terms in GTEX
+#### Over Expressed GO terms in GTEx
 ```{r, eval = FALSE}
 go_gtex <- goana(up_gtex_ID, species="Hs")
 # This is the list of top GO terms enriched for genes highly expressed in gtex
@@ -253,7 +253,7 @@ The GO terms can be grouped into key functional categories related to normal pan
 
 **Metabolism and Catabolism** – Overexpressed terms include alpha-amino acid catabolic process (GO:1901606), carboxylic acid catabolic process (GO:0046395), organic acid catabolic process (GO:0016054), proteinogenic amino acid catabolic process (GO:0170040), amino acid catabolic process (GO:0009063), L-amino acid catabolic process (GO:0170035), small molecule catabolic process (GO:0044282), alpha-amino acid metabolic process (GO:1901605), amino acid metabolic process (GO:0006520), oxoacid metabolic process (GO:0043436), and organic acid metabolic process (GO:0006082). These pathways reflect the high metabolic activity required to maintain homeostasis and nutrient processing in normal pancreatic tissues, supporting energy production and normal cellular function. In contrast, cancer cells reduce these catabolic and metabolic processes as they shift towards anabolic pathways to fuel rapid proliferation and tumor growth.
 
-**Digestion and Circulation** – Key terms include digestion (GO:0007586), circulatory system process (GO:0003013), and blood circulation (GO:0008015). These processes are critical for maintaining normal pancreatic functions, such as enzyme secretion(like insulin) and nutrient absorption. In normal tissues, digestion and circulation ensure homeostasis and energy supply. However, cancer cells downregulate these functions as they prioritize growth and survival over normal physiological activities.
+**Digestion and Circulation** – Key terms include digestion (GO:0007586), circulatory system process (GO:0003013), and blood circulation (GO:0008015). These processes are critical for maintaining normal pancreatic functions, such as enzyme secretion(like insulin) and nutrient absorption. In normal tissues, digestion and circulation ensure homeostasis and energy supply. However, cancer cells downregulate these functions as they prioritize growth and survival over normal physiological activities.(Wikipedia, n.d.)
 
 **Homeostasis and Transport** – This category includes chemical homeostasis (GO:0048878), metal ion transport (GO:0030001), and import across plasma membrane (GO:0098739). Normal cells regulate ion transport and maintain chemical balance to support stable internal environments and proper enzyme activity in the pancreas. Cancer cells disrupt these pathways to promote proliferation and invasion, resulting in lower expression of these homeostatic functions.
 
@@ -276,9 +276,9 @@ knitr::include_graphics("./kegg-tcga.png")
 
 **Interpretation**:
 
-The top overexpressed KEGG pathways in pancreatic cancer shows key processes driving tumor growth, immune evasion, and metastasis. **Phagosome, cytokine-cytokine receptor interaction, and cell adhesion molecules** pathways shows an inflammatory microenvironment and enhanced immune signaling that promote tumor survival and immune suppression. **ECM-receptor interaction and focal adhesion** pathways indicate increased cell migration and invasion, for metastasis. These pathways indicate how pancreatic tumors manipulate immune responses and cellular interactions to sustain growth and spread.
+The top overexpressed KEGG pathways in pancreatic cancer shows key processes driving tumor growth, immune evasion, and metastasis. **Phagosome, cytokine-cytokine receptor interaction, and cell adhesion molecules** pathways shows an inflammatory microenvironment and enhanced immune signaling that promote tumor survival and immune suppression. **ECM-receptor interaction and focal adhesion**(Dafrazi, 2023) pathways indicate increased cell migration and invasion, for metastasis. These pathways indicate how pancreatic tumors manipulate immune responses and cellular interactions to sustain growth and spread.
 
-#### Over Expressed GTEX
+#### Over Expressed GTEx
 ```{r, eval = FALSE}
 # Perform over-representation analyses for KEGG pathways
 kegg_gtex <- kegga(up_gtex_ID, species="Hs")
@@ -436,43 +436,35 @@ The CTRB2 gene(NCBI, 2024) is located on the q arm of chromosome 16, and encodes
 
 
 # References
-**Upregulation Papers:**  
-Posta, M., & Győrffy, B. (2023). Analysis of a large cohort of pancreatic cancer transcriptomic profiles to reveal the strongest prognostic factors. *Clinical and Translational Science, 16*(8), 1479–1491. https://doi.org/10.1111/cts.13563  
 
-Xiao, X., Wan, Z., Liu, X., Chen, H., Zhao, X., Ding, R., Cao, Y., Zhou, F., Qiu, E., Liang, W., Ou, J., Chen, Y., Chen, X., & Zhang, H. (2023). Screening of therapeutic targets for pancreatic cancer by bioinformatics methods. *International Journal of Gastrointestinal Cancer, 55*(6), 420–425. https://doi.org/10.1055/a-2007-2715  
+Chen, D., Zhang, S., & Fang, W. (2023). A single-cell atlas of the tumor, stromal and immune microenvironments in pancreatic cancer liver metastasis (GSE197177) [Data set]. NCBI Gene Expression Omnibus. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE197177  
 
----
-
-**MET Pathway Papers:**  
-Qin, T., Xiao, Y., Qian, W., Wang, X., Gong, M., Wang, Q., An, R., Han, L., Duan, W., Ma, Q., & Wang, Z. (2022). HGF/c-Met pathway facilitates the perineural invasion of pancreatic cancer by activating the mTOR/NGF axis. *Cell Death & Disease, 13*(4). https://doi.org/10.1038/s41419-022-04799-5  
-
-Li, C., Wu, J.-J., Hynes, M., Welling, T. H., Pasca di Magliano, M., & Simeone, D. M. (2011). c-Met is a marker of pancreatic cancer stem cells and therapeutic target. *Gastroenterology, 141*(6), 2218–2227. https://doi.org/10.1053/j.gastro.2011.07.050  
-
-Kim, J., Lee, T. S., Lee, M. H., Cho, I. R., Ryu, J. K., Kim, Y. T., Lee, S. H., & Paik, W. H. (2024). Pancreatic cancer treatment targeting the HGF/c-MET pathway: The MEK inhibitor trametinib. *Cancers, 16*(5), 1056. https://doi.org/10.3390/cancers16051056  
-
----
-
-**Downregulation Paper:**  
-Xiao, Y., Zhang, B., Cloyd, J. M., Xu, G., Du, S., Mao, Y., & Pawlik, T. M. (2022). Gene signature and connectivity mapping to assist with drug prediction for pancreatic ductal adenocarcinoma. *Surgical Oncology, 44,* 101849. https://doi.org/10.1016/j.suronc.2022.101849  
-
----
-
-**CTRB2 Papers:**  
-López de Maturana, E., Rodríguez, J. A., Alonso, L., Lao, O., Molina-Montes, E., Martín-Antoniano, I. A., Gómez-Rubio, P., Lawlor, R., Carrato, A., Hidalgo, M., Iglesias, M., Molero, X., Löhr, M., Michalski, C., Perea, J., O’Rorke, M., Barberà, V. M., Tardón, A., Farré, A., … Malats, N. (2021). A multilayered post-GWAS assessment on genetic susceptibility to pancreatic cancer. *Genome Medicine, 13*(15). https://doi.org/10.1186/s13073-020-00816-4  
+Dafrazi, A. A., Mehrabi, T., & Malekinejad, F. (2023). A bioinformatics study for recognition of hub genes and pathways in pancreatic ductal adenocarcinoma. *arXiv preprint arXiv:2303.14440*. https://doi.org/10.48550/arXiv.2303.14440  
 
 Jermusyk, A., Zhong, J., Connelly, K. E., Petersen, G. M., Westlake, C. J., & Amundadottir, L. T. (2021). A 584 bp deletion in CTRB2 inhibits chymotrypsin B2 activity and secretion and confers risk of pancreatic cancer. *The American Journal of Human Genetics, 108*(10), 1885–1898. https://doi.org/10.1016/j.ajhg.2021.09.012  
 
+Kim, J., Lee, T. S., Lee, M. H., Cho, I. R., Ryu, J. K., Kim, Y. T., Lee, S. H., & Paik, W. H. (2024). Pancreatic cancer treatment targeting the HGF/c-MET pathway: The MEK inhibitor trametinib. *Cancers, 16*(5), 1056. https://doi.org/10.3390/cancers16051056  
 
-**NCBI Papers: **
+Li, C., Wu, J.-J., Hynes, M., Welling, T. H., Pasca di Magliano, M., & Simeone, D. M. (2011). c-Met is a marker of pancreatic cancer stem cells and therapeutic target. *Gastroenterology, 141*(6), 2218–2227. https://doi.org/10.1053/j.gastro.2011.07.050  
 
-National Center for Biotechnology Information (NCBI). (2024). *CTRB2 chymotrypsinogen B2 [Homo sapiens (human)]*. National Library of Medicine (NLM). Retrieved from https://www.ncbi.nlm.nih.gov/gene/440387
+López de Maturana, E., Rodríguez, J. A., Alonso, L., Lao, O., Molina-Montes, E., Martín-Antoniano, I. A., Gómez-Rubio, P., Lawlor, R., Carrato, A., Hidalgo, M., Iglesias, M., Molero, X., Löhr, M., Michalski, C., Perea, J., O’Rorke, M., Barberà, V. M., Tardón, A., Farré, A., … Malats, N. (2021). A multilayered post-GWAS assessment on genetic susceptibility to pancreatic cancer. *Genome Medicine, 13*(15). https://doi.org/10.1186/s13073-020-00816-4  
 
-National Center for Biotechnology Information (NCBI). (2024). *MET proto-oncogene, receptor tyrosine kinase [Homo sapiens (human)]*. National Library of Medicine (NLM). Retrieved from https://www.ncbi.nlm.nih.gov/gene/4233
+National Center for Biotechnology Information (NCBI). (2024). *CTRB2 chymotrypsinogen B2 [Homo sapiens (human)]*. National Library of Medicine (NLM). Retrieved from https://www.ncbi.nlm.nih.gov/gene/440387  
 
+National Center for Biotechnology Information (NCBI). (2024). *MET proto-oncogene, receptor tyrosine kinase [Homo sapiens (human)]*. National Library of Medicine (NLM). Retrieved from https://www.ncbi.nlm.nih.gov/gene/4233  
 
-**Intro: **
-Chen, D., Zhang, S., & Fang, W. (2023). A single-cell atlas of the tumor, stromal and immune microenvironments in pancreatic cancer liver metastasis (GSE197177) [Data set]. NCBI Gene Expression Omnibus. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE197177
+Posta, M., & Győrffy, B. (2023). Analysis of a large cohort of pancreatic cancer transcriptomic profiles to reveal the strongest prognostic factors. *Clinical and Translational Science, 16*(8), 1479–1491. https://doi.org/10.1111/cts.13563  
 
+Qin, T., Xiao, Y., Qian, W., Wang, X., Gong, M., Wang, Q., An, R., Han, L., Duan, W., Ma, Q., & Wang, Z. (2022). HGF/c-Met pathway facilitates the perineural invasion of pancreatic cancer by activating the mTOR/NGF axis. *Cell Death & Disease, 13*(4). https://doi.org/10.1038/s41419-022-04799-5  
 
-Wang, S., Zheng, Y., Yang, F., Zhu, L., Zhu, X.-Q., Wang, Z.-F., Wu, X.-L., Zhou, C.-H., Yan, J.-Y., Hu, B.-Y., Kong, B., Fu, D.-L., Bruns, C., Zhao, Y., Qin, L.-X., & Dong, Q.-Z. (2021). The molecular biology of pancreatic adenocarcinoma: Translational challenges and clinical perspectives. *Signal Transduction and Targeted Therapy, 6*(1), 249. https://doi.org/10.1038/s41392-021-00659-4
+UC Davis Bioinformatics Core. (2018, June). Differential expression with limma-voom. Retrieved from https://ucdavis-bioinformatics-training.github.io/2018-June-RNA-Seq-Workshop/thursday/DE.html  
 
+Wang, S., Zheng, Y., Yang, F., Zhu, L., Zhu, X.-Q., Wang, Z.-F., Wu, X.-L., Zhou, C.-H., Yan, J.-Y., Hu, B.-Y., Kong, B., Fu, D.-L., Bruns, C., Zhao, Y., Qin, L.-X., & Dong, Q.-Z. (2021). The molecular biology of pancreatic adenocarcinoma: Translational challenges and clinical perspectives. *Signal Transduction and Targeted Therapy, 6*(1), 249. https://doi.org/10.1038/s41392-021-00659-4  
+
+Wikipedia contributors. (n.d.). Immune system. Wikipedia, The Free Encyclopedia. Retrieved December 25, 2024, from https://en.wikipedia.org/wiki/Immune_system  
+
+Wikipedia contributors. (n.d.). Tumor metabolome. Wikipedia, The Free Encyclopedia. Retrieved October 29, 2024, from https://en.wikipedia.org/wiki/Tumor_metabolome  
+
+Xiao, X., Wan, Z., Liu, X., Chen, H., Zhao, X., Ding, R., Cao, Y., Zhou, F., Qiu, E., Liang, W., Ou, J., Chen, Y., Chen, X., & Zhang, H. (2023). Screening of therapeutic targets for pancreatic cancer by bioinformatics methods. *International Journal of Gastrointestinal Cancer, 55*(6), 420–425. https://doi.org/10.1055/a-2007-2715  
+
+Xiao, Y., Zhang, B., Cloyd, J. M., Xu, G., Du, S., Mao, Y., & Pawlik, T. M. (2022). Gene signature and connectivity mapping to assist with drug prediction for pancreatic ductal adenocarcinoma. *Surgical Oncology, 44,* 101849. https://doi.org/10.1016/j.suronc.2022.101849  
