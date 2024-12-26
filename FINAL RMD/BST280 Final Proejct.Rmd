@@ -1,17 +1,17 @@
 ---
 title: "Pancreatic Cancer Analysis Report"
-author: "Youxin (Anthony) Tan"
+author: "Jurijs Alehins, Tanush Kumar, Harshi Saha, Anthony Tan"
 date: "`r Sys.Date()`"
 output:
-  html_document:
-    toc: true
-    toc_depth: 2
-    number_sections: true
   pdf_document:
     toc: true
     toc_depth: 2
     number_sections: true
     latex_engine: xelatex
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
 ---
 
 # Introduction
@@ -20,17 +20,24 @@ Pancreatic cancer is one of the deadliest malignancies worldwide. It has a five-
 
 This study aims to identify genes that are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue, using genetic data from The Cancer Genome Atlas (TCGA) and the Genotype-Tissue Expression (GTEx) project. By integrating advanced bioinformatics approaches, we seek to uncover main biological processes, pathways, and molecular functions associated with PAAD development and progression.
 
-Our main research questions are as below:
+Our research questions are as below:
 
-What genes are differentially expressed between normal pancreatic tissue(GTEx) and pancreatic adenocarcinoma tissue(TCGA)?
+Primary research questions:
 
-Which biological processes and pathways are enriched in the differentially expressed genes?
+1. What genes are differentially expressed between normal pancreatic tissue(GTEx) and pancreatic adenocarcinoma tissue(TCGA)?
 
-How do these findings contribute to our understanding of the molecular mechanisms underlying pancreatic adenocarcinoma?
+2. Which biological processes and pathways are enriched in the differentially expressed genes?
+
+3. How do these findings contribute to our understanding of the molecular mechanisms underlying pancreatic adenocarcinoma?
+
+Secondary research question:
+
+1. Are there other interesting factors like Diabetes, Alcohol Use, Sex that affect gene expression differentially?
+
 
 With data preprocessing, differential gene expression analysis(DEGs), pathway enrichment analysis(GSEA), and network inference(PANDA), this project will provide insights into the biology of pancreatic adenocarcinoma. By stratifying data based on sex, diabetes status,and alcohol consumption, we further aim to investigate molecular features that may refine our understanding of PAAD heterogeneity and its clinical implications.
 
-# Main Reseasrch Methods & Result: TCGA VS GTEx
+# Primary Reseasrch Methods & Result: TCGA VS GTEx
 
 ### Data Sources
 - **TCGA (PAAD):** Pancreatic adenocarcinoma samples.
@@ -245,6 +252,7 @@ The GO terms can be grouped into key functional categories related to pancreatic
 This clustering highlights processes driving tumor progression, immune evasion, and metastatic behavior in pancreatic cancer.
 
 #### Over Expressed GO terms in GTEx
+
 ```{r, eval = FALSE}
 go_gtex <- goana(up_gtex_ID, species="Hs")
 # This is the list of top GO terms enriched for genes highly expressed in gtex
@@ -268,7 +276,9 @@ The GO terms can be grouped into key functional categories related to normal pan
 This clustering highlights the metabolic, circulatory, and homeostatic processes essential for normal pancreatic function, contrasting with the metabolic rewiring and disrupted physiological pathways characteristic of pancreatic cancer cells.
 
 ### KEGG Pathways
+
 #### Over expressed TCGA
+
 ```{r kegg-analysis, eval = FALSE}
 # Perform over-representation analyses for KEGG pathways
 kegg_tcga <- kegga(up_tcga_ID, species="Hs")
@@ -285,6 +295,7 @@ knitr::include_graphics("./kegg-tcga.png")
 The top overexpressed KEGG pathways in pancreatic cancer shows key processes driving tumor growth, immune evasion, and metastasis. **Phagosome, cytokine-cytokine receptor interaction, and cell adhesion molecules** pathways shows an inflammatory microenvironment and enhanced immune signaling that promote tumor survival and immune suppression. **ECM-receptor interaction and focal adhesion**(Dafrazi, 2023) pathways indicate increased cell migration and invasion, for metastasis. These pathways indicate how pancreatic tumors manipulate immune responses and cellular interactions to sustain growth and spread.
 
 #### Over Expressed GTEx
+
 ```{r, eval = FALSE}
 # Perform over-representation analyses for KEGG pathways
 kegg_gtex <- kegga(up_gtex_ID, species="Hs")
@@ -310,6 +321,7 @@ female_network_full <- read.table("output_females.txt", header=TRUE, stringsAsFa
 ```
 
 #### PANDA-TCGA NETWORK
+
 ```{r, eval = FALSE}
 ## This is the TCGA network
 edges <- tcga_network
