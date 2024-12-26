@@ -471,6 +471,17 @@ knitr::include_graphics("./single-gene-2.png")
 
 The CTRB2 gene(NCBI, 2024) is located on the q arm of chromosome 16, and encodes a principal precursor involved in the activation of pancreatic enzymes, thus dysregulation of this gene results in imbalances in pancreatic enzyme activity, and inversions in this gene are associated with chronic inflammation of the pancreas. Specifically in relation to pancreatic cancer, low expression(Maturana et al., 2021) of CTRB2, via gene variations(Jermusyk et al., 2021) or otherwise, confers risk of cancer. The relationship between CTRB2 and type 2 diabetes(Maturana et al., 2021), as well as chronic pancreatitis, risk factors for pancreatic cancer, may further explain the association of this gene with pancreatic cancer.
 
+
+## Limitations
+
+Some of the limitations of our study include a relatively small sample size, with 349 samples from GTEx and 179 samples from TCGA. This potentially reduces the reliability of our study because pancreatic cancer, although one of the deadliest, is rare. It would be beneficial to include more GTEx and TCGA samples to improve our understanding, as genetic variation can be significant among individuals in TCGA and GTEx as well. Our study primarily focuses on the early stages (1-2) of pancreatic cancer, thereby excluding information from the later stages (3-5), which could potentially provide more comprehensive insights into the overall cancer mechanism when compared to GTEx.
+
+## Future Directions
+
+For the future, we plan to address the limitations mentioned above. We aim to include genetic information from later stages of cancer for a more thorough analysis, allowing us to compare stages 1-5 with stages 1-2 for a broader perspective. Additionally, we can try to sample more TCGA data, similar to GTEx, to reduce the effects of genetic variations between individuals.
+
+
+
 # Secondary Research Methods & Result: Male vs Female
 
 ## Brief
