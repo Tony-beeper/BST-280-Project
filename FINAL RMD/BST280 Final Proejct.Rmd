@@ -200,6 +200,23 @@ knitr::include_graphics("./Voom.png")
 
 The graph is as expected by statistical theory of variance, where variance decreases as count size increases.(UC Davis Bioinformatics, 2018)
 
+### Mean Variance trend
+
+```{r, eval = FALSE}
+fit <- lmFit(voomOutput, design)
+fit <- eBayes(fit)
+plotSA(fit, main="Final model mean-variance trend")
+```
+
+
+```{r}
+knitr::include_graphics("./main_mean_var.png")
+```
+
+#### Mean Variance trend Interpretation
+
+It indicates that there are no concerning patterns in our data as the data was appropriately transformed for linear analysis.
+
 ### Volcano Plot
 
 ```{r volcano-plot, echo=FALSE, eval = FALSE}
