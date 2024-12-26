@@ -16,9 +16,9 @@ output:
 
 # Introduction
 
-Pancreatic cancer is one of the deadliest malignancies worldwide. It has a five-year survival rate of less than 10% due to its aggressive nature(Chen, 2023), limited treatment options and late diagnosis. Among pancreatic cancers, pancreatic adenocarcinoma (PAAD) accounts for the most of cases. It has challenges to early detection and therapeutic intervention. Understanding the molecular mechanisms driving PAAD is important for developing diagnostic markers and therapeutic targets to improve patient care(Wang, 2021).
+Pancreatic cancer is one of the most lethal and malignant cancer worldwide. It has a five-year survival rate of less than 10% (Chen, 2023) because of the limited treatment options and late diagnosis. For all the pancreatic cancers, pancreatic adenocarcinoma (PAAD) accounts for the majority of all the pancreatic cancer cases. It is challenging to detect it early, and thus impede the therapeutic intervention later on. We believe that understanding the molecular mechanisms behind PAAD is important for developing diagnostic markers and therapeutic targets to improve patients' care(Wang, 2021).
 
-This study aims to identify genes that are differentially expressed between normal pancreatic tissue and pancreatic adenocarcinoma tissue, using genetic data from The Cancer Genome Atlas (TCGA) and the Genotype-Tissue Expression (GTEx) project. By integrating advanced bioinformatics approaches, we seek to uncover main biological processes, pathways, and molecular functions associated with PAAD development and progression.
+We aims to identify genes that are differentially expressed between normal pancreatic tissue and PAAD tissue. We will be using genetic data from The Cancer Genome Atlas (TCGA) and the Genotype-Tissue Expression (GTEx) project. By using the bioinformatics approaches mentioend above, we seek to unravel main biological processes, pathways, and molecular functions associated with PAAD development and progression.
 
 Our research questions are as below:
 
@@ -34,7 +34,7 @@ Secondary research question:
 
 1.  Are there other interesting factors like Diabetes, Alcohol Use, Sex that affect gene expression differentially?
 
-With data preprocessing, differential gene expression analysis(DEGs), pathway enrichment analysis(GSEA), and network inference(PANDA), this project will provide insights into the biology of pancreatic adenocarcinoma. By stratifying data based on sex, diabetes status,and alcohol consumption, we further aim to investigate molecular features that may refine our understanding of PAAD heterogeneity and its clinical implications.
+With data preprocessing, differential gene expression analysis(DEGs), pathway enrichment analysis(GSEA), and network inference(PANDA), this project will provide insights for us into the biology of PAAD. By stratifying data based on sex, diabetes status,and alcohol consumption, we further plan to investigate molecular features that may refine our understanding of PAAD heterogeneity and its clinical implications.
 
 # Primary Reseasrch Methods & Result: TCGA VS GTEx
 
