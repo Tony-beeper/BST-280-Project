@@ -725,6 +725,14 @@ knitr::include_graphics("./pca_diabetes.png")
 
 In the EDA section, the mean variance trend, limma-voom, both look fine as per lecture examples. The PCA is not as clearly separated between the two sets(Diabetic vs Non-Diabetic) compared to the TCGA vs GTEx analysis.
 
+## Differentially Expressed Genes
+
+```{r}
+knitr::include_graphics("./de_diabetes.png")
+```
+
+We found 0 differentially expressed genes in diabetic vs non-diabetic analysis.
+
 ## Network Analysis
 
 ### Network Graph
@@ -874,6 +882,14 @@ knitr::include_graphics("./pca_alcohol.png")
 
 In the EDA section, the mean variance trend, limma-voom, both look fine as per lecture examples. The PCA is not as clearly separated between the two sets(Alcoholic vs Non-Alcohol) compared to the TCGA vs GTEx analysis.
 
+## Differentially Expressed Genes
+
+```{r}
+knitr::include_graphics("./alcohol_DE.png")
+```
+
+We found 0 differentially expressed genes in the alcoholic vs non-alcoholic group.
+
 ## Network Analysis
 
 ### Network Graph
@@ -984,6 +1000,7 @@ knitr::include_graphics("./panda_maotai.png")
 ## Alcoholic Analysis Conclusion
 
 Our analysis found no differentially expressed genes related to alcohol. While network analysis was conducted, we did not investigate it further. This area could be interesting for future research to uncover potential hidden mechanisms.
+
 
 
 # Overall Limitations & Future Directions
