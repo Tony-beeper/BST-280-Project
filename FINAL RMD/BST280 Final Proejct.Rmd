@@ -839,7 +839,11 @@ knitr::include_graphics("./panda_diabetes.png")
 
 ## Diabetic Analysis Conclusion
 
-Our analysis comparing diabetic and non-diabetic cancer groups found no differentially expressed genes with a log-fold change of 1. However, network analysis with PANDA showed some interesting differences in gene networks. PINX1(You, 2024) was a positively targeted hub, and its over-regulation stood out. STC2(Lin, 2020) was found as a negatively targeted hub. The exact reasons behind these results are not clear, but they point to areas that could be worth exploring to better understand the effects of diabetes and cancer separately.
+Our analysis comparing diabetic and non-diabetic cancer groups found no differentially expressed genes with a log-fold change of 1 and an adjusted p-value of 0.05. Literature review however, indicated that type 2 diabetes has been associated with an almost twofold excess risk of pancreatic cancer, and that diabetes may be both caused by early pancreatic cancer and be a causal factor in the development of pancreatic cancer (Bosetti, 2014). Therefore, we proceeded with network analysis using PANDA, which showed some interesting differences in gene networks. We specifically chose to further investigate the following genes, PINX1, which was a positively targeted hub, and STC2, which was a negatively targeted hub.
+
+The PINX1 gene is involved in a variety of complex cellular functions, and of relevance to cancer specifically, it acts to safeguard telomeres and chromosomal integrity, such that increased regulation of this gene in cancer may enhance cancer cell resistance to radiation and chemotherapy (You, 2024). Additionally, variations in this gene have been linked to risk of type two diabetes (Zee, 2011), indicating the differential targeting of this gene in those with pancreatic cancer with and without diabetes is of interest. Since the patterns of expression of PINX1 and the exact mechanisms of its influence in the development and progression of cancer differs by cancer type (You, 2024), further investigation is required to better understand the interplay between this gene, diabetes, and pancreatic cancer.
+
+The STC2 gene is involved in cellular processes associated with glucose homeostasis and phosphorus metastasis (Lin, 2020), and has been found to be relevant to diabetes and cancer. For cancer specifically, this gene has been implicated in tumor development and progression, and has been noted as a prognostic predictor in cancers where overexpression predicted poor prognosis (Lin, 2020). However, the mechanism of the role of this gene in various cancers, especially in pancreatic cancer, is not well understood, with some studies indicating that expression of STC2 served as a tumor suppressor and inhibited cancer cell migration and invasion (Lin, 2020). Thus, similar to the PINX1 gene, further investigation is required to better understand the interplay between this gene, diabetes, and pancreatic cancer.
 
 # Secondary Research Methods & Result: Alcohol Consumption
 
@@ -1022,6 +1026,8 @@ For the **alcoholic analysis**, a limitation is the varying effects of alcohol, 
 
 # References
 
+Bosetti, C., Rosato, V., Li, D., Silverman, D., Petersen, G. M., Bracci, P. M., Neale, R. E., Muscat, J., Anderson, K., Gallinger, S., Olson, S. H., Miller, A. B., Bas Bueno-de-Mesquita, H., Scelo, G., Janout, V., Holcatova, I., Lagiou, P., Serraino, D., Lucenteforte, E., & Fabianova, E. (2014). Diabetes, antidiabetic medications, and pancreatic cancer risk: an analysis from the International Pancreatic Cancer Case-Control Consortium. *Annals of Oncology: Official Journal of the European Society for Medical Oncology*, *25*(10), 2065–2072. <https://doi.org/10.1093/annonc/mdu276>‌
+
 Chen, D., Zhang, S., & Fang, W. (2023). A single-cell atlas of the tumor, stromal and immune microenvironments in pancreatic cancer liver metastasis (GSE197177) [Data set]. NCBI Gene Expression Omnibus. <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE197177>
 
 Dafrazi, A. A., Mehrabi, T., & Malekinejad, F. (2023). A bioinformatics study for recognition of hub genes and pathways in pancreatic ductal adenocarcinoma. *arXiv preprint arXiv:2303.14440*. <https://doi.org/10.48550/arXiv.2303.14440>
@@ -1057,3 +1063,5 @@ Xiao, X., Wan, Z., Liu, X., Chen, H., Zhao, X., Ding, R., Cao, Y., Zhou, F., Qiu
 Xiao, Y., Zhang, B., Cloyd, J. M., Xu, G., Du, S., Mao, Y., & Pawlik, T. M. (2022). Gene signature and connectivity mapping to assist with drug prediction for pancreatic ductal adenocarcinoma. *Surgical Oncology, 44,* 101849. <https://doi.org/10.1016/j.suronc.2022.101849>
 
 You, D., Tong, K., Li, Y., Zhang, T., Wu, Y., Wang, L., Chen, G., & Zhang, X. (2024). PinX1 plays multifaceted roles in human cancers: A review and perspectives. *Molecular Biology Reports, 51*(1), 1163. <https://doi.org/10.1007/s11033-024-10082-x>
+
+Zee Robert Y. L., Ridker, P. M., & Chasman, D. I. (2011). Genetic variants of 11 telomere-pathway gene loci and the risk of incident type 2 diabetes mellitus: The Women’s Genome Health Study. *Atherosclerosis*, *218*(1), 144–146. <https://doi.org/10.1016/j.atherosclerosis.2011.05.013>
